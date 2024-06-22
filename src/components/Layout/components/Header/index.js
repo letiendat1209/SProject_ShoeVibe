@@ -1,13 +1,9 @@
 import classNames from 'classnames/bind';
 //font
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
-
-// import Tippy from '@tippyjs/react/headless';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
+import { AccountIcon, CartIcon, SearchIcon } from '~/assets/icons';
 
 const cx = classNames.bind(styles);
 
@@ -52,16 +48,16 @@ function Header() {
                     <div className={cx('search-box')}>
                         <input placeholder="Tìm kiếm" spellCheck={false}></input>
                         <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <SearchIcon />
                         </button>
                     </div>
                 </div>
                 <div className={cx('actions')}>
                     <button className={cx('login')}>
-                        <FontAwesomeIcon icon={faUser} />
+                        <AccountIcon />
                     </button>
                     <button className={cx('cart')}>
-                        <FontAwesomeIcon icon={faCartShopping} />
+                        <CartIcon />
                         <span className={cx('count-holder')}>
                             <p>2</p>
                         </span>
