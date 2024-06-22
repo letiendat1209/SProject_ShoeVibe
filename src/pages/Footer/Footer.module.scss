@@ -1,0 +1,68 @@
+.wrapper {
+    background-color: black;
+}
+.pd {
+    padding: 0 12px 0 12px;
+}
+.footer-inner {
+}
+.footer-middle {
+    padding: 22px 0 8px 0;
+    border-bottom: 1px solid #e1e1e1;
+}
+.footer-section-title {
+    height: 61px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+.footer-section-main {
+    text-align: center;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: #fff;
+    line-height: 1.4;
+}
+.footer-section-des {
+    text-align: center;
+    color: #fff;
+}
+.footer-widget {
+    ul > li {
+        margin-bottom: 18px;
+        font-size: 14px;
+        > a {
+            color: #fff;
+            > span {
+                color: red;
+                margin: 0 2px 0 2px;
+            }
+        }
+    }
+}
+.footer-widget-title {
+    margin-bottom: 20px;
+    color: #fff;
+}
+.footer-bottom {
+    padding: 28px 0 36px 0;
+}
+.footer-company-name {
+    margin: 16px;
+    color: #fff;
+}
+.footer-company-add {
+    margin: 16px;
+
+    color: #fff;
+}
+.footer-company-tel {
+    margin: 16px;
+    color: #fff;
+}
+.btc-sign {
+    padding-top: 12px;
+}
+.tct {
+    text-align: center;
+}

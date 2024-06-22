@@ -1,0 +1,114 @@
+.wrapper {
+    width: 100%;
+    height: var(--default-layout-header-height, 124px);
+    position: fixed;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    background-color: #fff;
+    z-index: 100;
+}
+.inner {
+    height: 100%;
+    width: 1534px;
+    padding: 0 40px;
+    display: flex;
+}
+.logo {
+    width: 212px;
+    height: 100%;
+    margin: 0 0 0 30px;
+    font-size: 14px;
+}
+.img-logo {
+    width: 122px;
+    height: 54px;
+    padding: 0 5px 5px 0;
+}
+
+.menu {
+    width: 848px;
+    .menu-list {
+        display: flex;
+        flex-wrap: wrap; /* Cho phép xuống dòng nếu vượt quá */
+        list-style-type: none; /* Loại bỏ dấu chấm */
+
+        li {
+            text-align: center;
+            display: flex;
+            a {
+                text-decoration: none;
+                text-align: center;
+                color: black;
+                position: relative;
+                font-weight: 600;
+                font-size: 16px;
+                margin: 0px 5px;
+                padding: 20px 10px;
+            }
+        }
+    }
+    li {
+        height: 62.4px;
+    }
+}
+.search {
+    width: 242px;
+    height: (var(--default-layout-header-height) / 2);
+
+    .search-box {
+        width: 191px;
+        height: 47px;
+        padding: 0 0 0 10px;
+        margin: 5px 0 0 30px;
+        display: flex;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        input {
+            width: 100%;
+            height: 100%;
+            font-size: 1.4rem;
+            background-color: transparent;
+        }
+    }
+}
+
+.search-btn {
+    width: 60px;
+    font-size: 1.8rem; // kích thước icon
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.actions {
+    margin-top: 18px;
+    padding: 0 5px;
+}
+.login {
+    width: 2.7rem;
+    height: 1.7rem;
+    font-size: 1.8rem;
+}
+.cart {
+    width: 2.7rem;
+    height: 1.7rem;
+    font-size: 1.8rem;
+    .count-holder {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        color: #fff;
+        background: #565656;
+        line-height: 14px;
+        padding: 0 2px;
+        text-align: center;
+        position: absolute;
+        left: 1418px;
+        top: 9px;
+        font-size: 1rem;
+        p {
+            line-height: 16px;
+        }
+    }
+}
