@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { AccountIcon, CartIcon, SearchIcon } from '~/assets/icons';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -12,9 +13,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <a href="">
+                    <Link to={'/'}>
                         <img src={images.logo} className={cx('img-logo')} alt="MWC"></img>
-                    </a>
+                    </Link>
                 </div>
                 <div className={cx('menu')}>
                     <ul className={cx('menu-list')}>

@@ -54,7 +54,7 @@ export const SearchIcon = ({ width = '2rem', height = '2rem' }) => (
             y2="-0.5"
             transform="matrix(0.70712 0.707094 -0.70712 0.707094 9.3457 9.50012)"
             stroke="#2D2D2D"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
         ></line>
     </svg>
 );
