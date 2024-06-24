@@ -179,8 +179,158 @@ function ProductDetail() {
                                 </div>
                             </div>
                         </div>
-                        <div className={cx('row')}></div>
-                        <div className={cx('row')}></div>
+                        <div className={cx('row')}>
+                            <div className={cx('col', 'mb-32')}>
+                                <ul className={cx('nav-tabs')}>
+                                    <li className={cx('nav-item')}>
+                                        <button>Chi tiết sản sản phẩm</button>
+                                    </li>
+                                    <li className={cx('nav-item')}>
+                                        <button>Bình luận</button>
+                                    </li>
+                                </ul>
+                                <div className={cx('tab-content')}>
+                                    <div className={cx('tab-pane', 'active show')}>
+                                        <p>
+                                            <span>MÔ TẢ SẢN PHẨM: Giày thể thao nữ MWC A160</span>
+                                        </p>
+                                        <ul>
+                                            <li>
+                                                Giày thiết kế kiểu thắt dây năng động, được sử dụng bằng chất liệu da
+                                                tổng hợp cao cấp rất êm mềm và bền bỉ.
+                                            </li>
+                                            <li>
+                                                Với kiểu dáng sneaker đế cao 4cm, có tính năng thoáng khí, dễ đi, dễ
+                                                phối hợp với nhiều trang phục khác nhau từ chân váy, quần jeans, tây hay
+                                                sooc,.. đều rất hợp thời trang tạo nên vẻ đẹp cá tính rất riêng cho mỗi
+                                                người mang.
+                                            </li>
+                                            <li>
+                                                Form giày thon gọn kiểu dáng năng động trẻ trung, phù hợp đi lại trong
+                                                môi trường hoàn cảnh khác nhau như đi làm, đi dạo phố, hay đi dã ngoại
+                                                cùng bạn bè,... đều mang lại cảm giác thật sự thoải mái và tự tin cho
+                                                người dùng.
+                                            </li>
+                                        </ul>
+                                        <p>
+                                            <span>CHI TIẾT SẢN PHẨM</span>
+                                        </p>
+                                        <ul>
+                                            <li>Chiều cao: Khoảng 4cm</li>
+                                            <li>Chất liệu: Da tổng hợp cao cấp</li>
+                                            <li>Đế: Êm mềm, độ đàn hồi tốt, chống trơn trượt</li>
+                                            <li>Kiểu dáng: Giày thể thao cổ thấp</li>
+                                            <li>Màu sắc: Kem</li>
+                                            <li>
+                                                Do màn hình hiển thị khác nhau và ánh sáng khác nhau, hình ảnh có thể
+                                                chênh lệch 5-10% màu sắc thật của sản phẩm.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={cx('row')}>
+                            <div className={cx('col', 'mb-32')}>
+                                <div className={cx('filter-side-bar')}>
+                                    <div className={cx('combo-product')}>
+                                        <div className={cx('product-title')}>Có thể bạn cũng thích</div>
+                                        <div className={cx('product-content')}>
+                                            <div className={cx('combo-product-grid')}>
+                                                <div className={cx('product-grid-item')}>
+                                                    <div className={cx('product-thumb')}>
+                                                        <Link>
+                                                            <img
+                                                                src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2023/09/27/z4727917607321_1781353cfea9ae5977dc5606e3d01663.jpg"
+                                                                alt=""
+                                                            />
+                                                        </Link>
+                                                    </div>
+                                                    <Link>
+                                                        <div className={cx('product-info')}>
+                                                            <p className={cx('grid-p-title')}>
+                                                                Giày Thể Thao Nữ MWC A143 - Giày Thể Thao Nữ Dáng
+                                                                Sneaker, Giày Đế Bằng Siêu Êm Chân Hot Trend, Thời
+                                                                Trang. Giày Thể Thao Nữ MWC A143 - Giày Thể Thao Nữ Dáng
+                                                                Sneaker, Giày Đế Bằng Siêu Êm Chân Hot Trend, Thời
+                                                                Trang.
+                                                            </p>
+                                                            <p className={cx('grid-p-price')}>250.000 đ</p>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                                <div className={cx('product-grid-item')}>
+                                                    <div className={cx('product-thumb')}>
+                                                        <Link>
+                                                            <img
+                                                                src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2023/09/27/z4727917607321_1781353cfea9ae5977dc5606e3d01663.jpg"
+                                                                alt=""
+                                                            />
+                                                        </Link>
+                                                    </div>
+                                                    <Link>
+                                                        <div className={cx('product-info')}>
+                                                            <p className={cx('grid-p-title')}>
+                                                                Giày Thể Thao Nữ MWC A143 - Giày Thể Thao Nữ Dáng
+                                                                Sneaker, Giày Đế Bằng Siêu Êm Chân Hot Trend, Thời
+                                                                Trang. Giày Thể Thao Nữ MWC A143 - Giày Thể Thao Nữ Dáng
+                                                                Sneaker, Giày Đế Bằng Siêu Êm Chân Hot Trend, Thời
+                                                                Trang.
+                                                            </p>
+                                                            <p className={cx('grid-p-price')}>250.000 đ</p>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                                <div className={cx('product-grid-item')}>
+                                                    <div className={cx('product-thumb')}>
+                                                        <Link>
+                                                            <img
+                                                                src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2023/09/27/z4727917607321_1781353cfea9ae5977dc5606e3d01663.jpg"
+                                                                alt=""
+                                                            />
+                                                        </Link>
+                                                    </div>
+                                                    <Link>
+                                                        <div className={cx('product-info')}>
+                                                            <p className={cx('grid-p-title')}>
+                                                                Giày Thể Thao Nữ MWC A143 - Giày Thể Thao Nữ Dáng
+                                                                Sneaker, Giày Đế Bằng Siêu Êm Chân Hot Trend, Thời
+                                                                Trang. Giày Thể Thao Nữ MWC A143 - Giày Thể Thao Nữ Dáng
+                                                                Sneaker, Giày Đế Bằng Siêu Êm Chân Hot Trend, Thời
+                                                                Trang.
+                                                            </p>
+                                                            <p className={cx('grid-p-price')}>250.000 đ</p>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                                <div className={cx('product-grid-item')}>
+                                                    <div className={cx('product-thumb')}>
+                                                        <Link>
+                                                            <img
+                                                                src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2023/09/27/z4727917607321_1781353cfea9ae5977dc5606e3d01663.jpg"
+                                                                alt=""
+                                                            />
+                                                        </Link>
+                                                    </div>
+                                                    <Link>
+                                                        <div className={cx('product-info')}>
+                                                            <p className={cx('grid-p-title')}>
+                                                                Giày Thể Thao Nữ MWC A143 - Giày Thể Thao Nữ Dáng
+                                                                Sneaker, Giày Đế Bằng Siêu Êm Chân Hot Trend, Thời
+                                                                Trang. Giày Thể Thao Nữ MWC A143 - Giày Thể Thao Nữ Dáng
+                                                                Sneaker, Giày Đế Bằng Siêu Êm Chân Hot Trend, Thời
+                                                                Trang.
+                                                            </p>
+                                                            <p className={cx('grid-p-price')}>250.000 đ</p>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

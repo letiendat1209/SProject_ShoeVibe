@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 import styles from './ProductSection.module.scss';
 
 const cx = classNames.bind(styles);
@@ -9,7 +10,7 @@ function ProductSection() {
             <div className={cx('container-fluid')}>
                 <div className={cx('box-item')}>
                     <h2 className={cx('section-title')}>
-                        <a href="#"> SẢN PHẨM BÁN CHẠY</a>
+                        <Link> SẢN PHẨM BÁN CHẠY</Link>
                     </h2>
                     <div className={cx('section-inner')}>
                         <div className={cx('row')}>
@@ -21,7 +22,7 @@ function ProductSection() {
                                             alt=""
                                         />
                                     </div>
-                                    <a href="">
+                                    <Link>
                                         <div className={cx('product-info')}>
                                             <p className={cx('product-title')}>
                                                 Giày Thể Thao Nữ MWC A160 - Giày Thể Thao Nữ Cao 4cm, Kiểu Dáng Sneaker
@@ -31,18 +32,18 @@ function ProductSection() {
                                                 <span>275,000đ</span>
                                             </p>
                                         </div>
-                                    </a>
+                                    </Link>
                                     <div className={cx('product-variant-color')}>
                                         <ul>
                                             <li>
-                                                <a href="#">
+                                                <Link>
                                                     <div className={cx('block-color')}></div>
-                                                </a>
+                                                </Link>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <Link>
                                                     <div className={cx('block-color')}></div>
-                                                </a>
+                                                </Link>
                                             </li>
                                         </ul>
                                     </div>
@@ -156,7 +157,7 @@ function ProductSection() {
                         </div>
                     </div>
                     <div className={cx('view-more')}>
-                        <a href="#">XEM TẤT CẢ</a>
+                        <Link>XEM TẤT CẢ</Link>
                     </div>
                 </div>
                 <hr></hr>

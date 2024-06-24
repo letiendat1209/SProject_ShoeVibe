@@ -3,6 +3,7 @@ import { HeaderOnly } from '~/components/Layout';
 import Blog from '~/pages/Blog';
 
 import Cart from '~/pages/Cart';
+import Category from '~/pages/Category';
 import Home from '~/pages/Home';
 import Login from '~/pages/Login';
 import ProductDetail from '~/pages/ProductDetail';
@@ -17,6 +18,7 @@ const publicRoutes = [
     { path: '/cart', component: Cart },
     { path: '/upload', component: Upload, layout: HeaderOnly },
     { path: '/productDetail', component: ProductDetail },
+    { path: '/category', component: Category },
     { path: '/blog', component: Blog, layout: null },
 ];
 // Private Routes
