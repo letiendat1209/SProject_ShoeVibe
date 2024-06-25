@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 import SlideShow from '../Slider';
-import ProductSection from '../Product_Section';
-import InfoFooter from '../InfoFooter';
-import Footer from '../Footer';
+import ProductSection from '../../components/Product_Section';
+import InfoFooter from '../../components/InfoFooter';
+import Footer from '../../components/Footer';
 
 const cx = classNames.bind(styles);
 
@@ -19,8 +19,6 @@ function Home() {
                 <ProductSection />
                 <ProductSection />
                 {/*block này là bài viết*/}
-                <InfoFooter />
-                <Footer />
             </div>
         </div>
     );

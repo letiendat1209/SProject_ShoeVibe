@@ -3,26 +3,30 @@ import PropTypes from 'prop-types';
 
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import styles from '../Product_Section/ProductSection.module.scss';
-
+import styles from './CategoryItem.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
-const ProductItem = ({ data }) => {
+function CategoryItem({ data }) {
     return (
-        <div className={cx('col-md-3', 'col-sm-6')}>
+        <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
             <div className={cx('product-item')}>
                 <div className={cx('product-img')}>
-                    <img src={data.imageUrl} alt={data.title} />
+                <div className={cx('wish-list')}>
+                    <FontAwesomeIcon icon={faHeart}/>
                 </div>
-                <a href={data.link}>
+                    <img src={data.imageUrl} alt="" />
+                </div>
+                <Link>
                     <div className={cx('product-info')}>
                         <p className={cx('product-title')}>{data.title}</p>
                         <p className={cx('product-price')}>
                             <span>{data.price}</span>
                         </p>
                     </div>
-                </a>
+                </Link>
                 <div className={cx('product-variant-color')}>
                     <ul>
                         {data.colors.map((color, index) => (
@@ -37,9 +41,8 @@ const ProductItem = ({ data }) => {
             </div>
         </div>
     );
-};
-
-ProductItem.propTypes = {
+}
+CategoryItem.propTypes = {
     data: PropTypes.shape({
         imageUrl: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
@@ -49,4 +52,4 @@ ProductItem.propTypes = {
     }).isRequired,
 };
 
-export default ProductItem;
+export default CategoryItem;
