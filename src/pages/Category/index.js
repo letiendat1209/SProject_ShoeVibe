@@ -38,7 +38,7 @@ function Category() {
                             </div>
                             <div className={cx('category-product-list')}>
                                 <div className={cx('row')}>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -73,7 +73,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -108,7 +108,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -143,7 +143,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -178,7 +178,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -213,7 +213,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -248,7 +248,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -283,7 +283,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -318,7 +318,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -353,7 +353,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -388,7 +388,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -423,7 +423,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -458,7 +458,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -493,7 +493,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -528,7 +528,7 @@ function Category() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={cx('col', 'mb32')}>
+                                    <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
                                         <div className={cx('product-item')}>
                                             <div className={cx('product-img')}>
                                                 <img
@@ -567,7 +567,7 @@ function Category() {
                             </div>
                             <div className={cx('section-view-more')}></div>
                         </div>
-                        <div className={cx('col-lg-3')}>
+                        <div className={cx('col-12', 'col-lg-3')}>
                             <div className={cx('filter-sidebar-body')}>
                                 <h4 className={cx('filter-sidebar-title')}>
                                     <span>SẢN PHẨM BÁN CHẠY</span>
@@ -587,7 +587,7 @@ function Category() {
                                                 <div className={cx('product-item')}>
                                                     <div className={cx('product-img')}>
                                                         <img
-                                                            src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2024/06/14/z5537265577529-ce91775357cc0d531934680502a010bdb2d9da75-4d9b-4b92-af5f-d6750881a8b3.jpg"
+                                                            src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2023/11/09/z4782672760200_e8e8910f47ba13427e37a4ad29d56e96.jpg"
                                                             alt=""
                                                         />
                                                     </div>
@@ -622,7 +622,7 @@ function Category() {
                                                 <div className={cx('product-item')}>
                                                     <div className={cx('product-img')}>
                                                         <img
-                                                            src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2024/06/14/z5537265577529-ce91775357cc0d531934680502a010bdb2d9da75-4d9b-4b92-af5f-d6750881a8b3.jpg"
+                                                            src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2023/11/09/z4782672760200_e8e8910f47ba13427e37a4ad29d56e96.jpg"
                                                             alt=""
                                                         />
                                                     </div>
@@ -657,7 +657,7 @@ function Category() {
                                                 <div className={cx('product-item')}>
                                                     <div className={cx('product-img')}>
                                                         <img
-                                                            src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2024/06/14/z5537265577529-ce91775357cc0d531934680502a010bdb2d9da75-4d9b-4b92-af5f-d6750881a8b3.jpg"
+                                                            src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2023/11/09/z4782672760200_e8e8910f47ba13427e37a4ad29d56e96.jpg"
                                                             alt=""
                                                         />
                                                     </div>
@@ -692,7 +692,7 @@ function Category() {
                                                 <div className={cx('product-item')}>
                                                     <div className={cx('product-img')}>
                                                         <img
-                                                            src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2024/06/14/z5537265577529-ce91775357cc0d531934680502a010bdb2d9da75-4d9b-4b92-af5f-d6750881a8b3.jpg"
+                                                            src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2023/11/09/z4782672760200_e8e8910f47ba13427e37a4ad29d56e96.jpg"
                                                             alt=""
                                                         />
                                                     </div>
@@ -727,7 +727,7 @@ function Category() {
                                                 <div className={cx('product-item')}>
                                                     <div className={cx('product-img')}>
                                                         <img
-                                                            src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2024/06/14/z5537265577529-ce91775357cc0d531934680502a010bdb2d9da75-4d9b-4b92-af5f-d6750881a8b3.jpg"
+                                                            src="https://img.mwc.com.vn/giay-thoi-trang?w=640&h=640&FileInput=/Resources/Product/2023/11/09/z4782672760200_e8e8910f47ba13427e37a4ad29d56e96.jpg"
                                                             alt=""
                                                         />
                                                     </div>
