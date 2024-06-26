@@ -3,8 +3,6 @@ import styles from './ProductDetail.module.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import InfoFooter from '../../components/InfoFooter';
-import Footer from '../../components/Footer';
 
 const cx = classNames.bind(styles);
 
