@@ -63,3 +63,17 @@
     text-transform: capitalize;
     display: ruby;
 }
+
+//Main
+.profile-main {
+    position: relative;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    max-width: 980px;
+    box-sizing: border-box;
+    margin-left: 1.6875rem;
+    min-width: 0;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 0.125rem;
+}

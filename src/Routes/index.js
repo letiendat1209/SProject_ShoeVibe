@@ -2,7 +2,7 @@
 import { HeaderOnly } from '~/components/Layout';
 import Blog from '~/pages/Blog';
 
-import Cart from '~/pages/Cart';
+import Cart from '~/pages/SideCart';
 import Category from '~/pages/Category';
 import Home from '~/pages/Home';
 import Login from '~/pages/Login';

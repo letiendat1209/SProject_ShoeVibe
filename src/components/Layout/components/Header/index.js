@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function Header() {
+function Header({ toggleCart }) {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -57,8 +57,9 @@ function Header() {
                     <button className={cx('login')}>
                         <AccountIcon />
                     </button>
-                    <button className={cx('cart')}>
+                    <button className={cx('cart')} onClick={toggleCart}>
                         <CartIcon />
+
                         <span className={cx('count-holder')}>
                             <p>2</p>
                         </span>
