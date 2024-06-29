@@ -67,3 +67,15 @@ export const Path = ({ width = '1.2rem', height = '1.2rem' }) => (
         ></path>
     </svg>
 );
+export const TickIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+        <path
+            fill="none"
+            stroke="#343a40"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M2 5l6 6 6-6"
+        />
+    </svg>
+);

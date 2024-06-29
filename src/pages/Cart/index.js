@@ -114,28 +114,82 @@ function Cart() {
                             </div>
                         </div>
                     </div>
-                    <div>--</div>
+                    <div className={cx('line-space')}></div>
                     <div className={cx('row cart-total')}>
                         <div className={cx('col-6')}>
-                            <div className={cx('final-top')}>
-                                <FontAwesomeIcon icon={faTicket} color="red" />
-                                <p>Mã coupon</p>
-                                <select>
-                                    <option>--Chọn--</option>
-                                </select>
-                            </div>
-                            <div className={cx('final-bottom')}>
-                                <FontAwesomeIcon icon={faTicket} color="red" />
-                                <p className={cx('mg')}>Sử dụng điểm (Điểm của bạn: )</p>
-                                <input type="text" />
+                            <div>
+                                <div className={cx('final-top')}>
+                                    <FontAwesomeIcon icon={faTicket} color="red" />
+                                    <p>Mã coupon</p>
+                                    <div className={cx('top-space')}></div>
+                                    <span className={cx('top-code')}>
+                                        <select className={cx('form-select')}>
+                                            <option>--Chọn--</option>
+                                        </select>
+                                    </span>
+                                </div>
+                                <div className={cx('final-bottom')}>
+                                    <FontAwesomeIcon icon={faTicket} color="red" />
+                                    <p className={cx('mg')}>Sử dụng điểm (Điểm của bạn: )</p>
+                                    <div className={cx('top-space')}></div>
+                                    <span className={cx('top-code')}>
+                                        <input type="text" />
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        <div className={cx('col-6')}></div>
+                        <div className={cx('col-6')}>
+                            <div className={cx('total-price')}>
+                                <span>Tổng tiền hàng</span>
+                                <span>423.000 đ</span>
+                            </div>
+                            <div className={cx('total-price')}>
+                                <span>Giảm giá sản phẩm</span>
+                                <span>- 00 đ</span>
+                            </div>
+                            <div className={cx('total-price')}>
+                                <span>Giảm giá coupon</span>
+                                <span>- 0 đ</span>
+                            </div>
+                            <div className={cx('total-price')}>
+                                <span>Phí vận chuyển</span>
+                                <span>00 đ</span>
+                            </div>
+                            <div className={cx('line-space', 'pd')} />
+                            <div className={cx('total-price')}>
+                                <span className={cx('red')}>TỔNG </span>
+                                <span className={cx('red')}>0 đ</span>
+                            </div>
+                        </div>
                     </div>
-                    <div className={cx('row')}></div>
-                    <div className={cx('infor-user')}></div>
-                    <div className={cx('no')}></div>
-                    <button className={cx('btn-order')}>Đặt hàng</button>
+                    <div className={cx('row')}>
+                        <div className={cx('col-12')}>
+                            <strong> THÔNG TIN VẬN CHUYỂN </strong>
+                            <Link>
+                                <p className={cx('change-address')}>Thay đổi thông tin nhận hàng</p>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className={cx('infor-user')}>
+                        <div className={cx('r-iu')}>
+                            <span>Người nhận: </span>
+                            <span></span>
+                        </div>
+                        <div className={cx('r-iu')}>
+                            <span>Điện thoại: </span>
+                            <span></span>
+                        </div>
+                        <div className={cx('r-iu')}>
+                            <span>Địa chỉ :</span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div className={cx('address-gues')}></div>
+                    <div className={cx('Order')}>
+                        <button className={cx('btn-order')}>
+                            <span>Đặt hàng</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -194,34 +194,123 @@
 .final-top,
 .final-bottom {
     display: flex;
-    padding: 12px 0 12px 0;
     grid-column-start: 2;
     grid-column-end: 4;
     -webkit-box-align: center;
     align-items: center;
+    padding: 12px 0 12px 0;
     p {
-        margin: 0 242px 0 8px;
-        font-size: 14px;
+        margin: 0 8px 0 8px;
         font-weight: 600;
-        text-wrap: nowrap;
-    }
-    select {
-        max-width: 208px;
-        height: 38px;
-        font-size: 16px;
-        border: 1px solid #ced4da;
-        border-radius: 0.25rem;
-        padding: 6px 36px 6px 12px;
+        flex-shrink: 0;
     }
     input {
-        max-width: 208px;
-        height: 38px;
-        border: 1px solid #ced4da;
-        border-radius: 0.25rem;
-    }
-    .mg {
-        margin-right: 114px;
     }
 }
-.final-bottom {
+.top-code {
+    height: 38px;
+    margin-right: 30px;
+    text-transform: capitalize;
+    color: #05a;
+    font-size: 17px;
+    white-space: nowrap;
+    cursor: pointer;
+    input {
+        display: block;
+        width: 100%;
+        padding: 6px 12px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        border: 1px solid #ced4da;
+        appearance: none;
+        border-radius: 2.5px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .form-select {
+        height: 38px;
+        width: 208px;
+        padding: 6px 36px 6px 12px;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-image: url(../../assets/icons/tick.svg);
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 16px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        appearance: none;
+        select {
+            word-wrap: normal;
+            option {
+                font-weight: normal;
+                display: block;
+                min-height: 1.2em;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+.line-space {
+    padding: 16px 0 8px 0;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #dee2e6;
+}
+.pd {
+    padding: 0;
+}
+.top-space {
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+//----------------------
+.total-price {
+    margin: 8px;
+    display: flex;
+    justify-content: space-between;
+    .red {
+        color: red;
+    }
+}
+.change-address {
+    margin-left: 15px;
+    color: #1733f7;
+    display: inline-block;
+}
+.infor-user {
+    .r-iu {
+        margin: 8px;
+        font-weight: 700;
+        padding-right: 10px;
+    }
+}
+//-------------
+.Order {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+    .btn-order {
+        position: relative;
+        overflow: visible;
+        background: #ee4d2d;
+        max-width: 247px;
+        height: 40px;
+        line-height: 1;
+        width: 247px;
+        span {
+            color: white;
+            padding: 13px 36px;
+            margin: 0 22px 0 15px;
+            text-transform: capitalize;
+            font-weight: 300;
+            box-sizing: border-box;
+            font-size: 15px;
+            border-radius: 2px;
+            width: 100%;
+        }
+    }
 }
