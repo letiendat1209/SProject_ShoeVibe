@@ -1,0 +1,194 @@
+.Wrapper {
+    height: 2000px;
+    padding-top: var(--default-layout-header-height);
+}
+.page-breadcumb {
+    padding: 28px 0 20px 0;
+    box-shadow: inset 0px 3px 7px -2px #e9e9e9;
+}
+.breakcumb {
+    display: flex;
+}
+.breadcumb-item {
+    padding-left: 8px;
+}
+.breadcumb-item::before {
+    content: '|';
+}
+
+.User-page {
+}
+.profile-layout {
+    display: flex;
+    padding: 20px 0 20px 0;
+}
+.profile-sidebar {
+    width: 180px;
+    flex-shrink: 0;
+}
+.sidebar-user {
+    width: 100%;
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px solid #efefef;
+}
+.user-avt {
+    max-width: 50px;
+    max-height: 50px;
+    img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+    }
+}
+.sidebar-info {
+    -webkit-box-flex: 1;
+    width: 100%;
+    padding-left: 15px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding-left: 15px;
+    overflow: hidden;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+}
+.sidebar-info-name {
+}
+.sidebar-fix-name {
+    margin: 0;
+    margin-left: 2px;
+    color: #888;
+    text-transform: capitalize;
+    display: ruby;
+}
+
+//Main
+.profile-main {
+    position: relative;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    max-width: 980px;
+    box-sizing: border-box;
+    margin-left: 27px;
+    min-width: 0;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 5px;
+}
+.main-account {
+    padding: 0 30px 10px 30px;
+}
+.account-header {
+    padding: 18px 0;
+    border-bottom: 1px solid #efefef;
+}
+.account-body {
+    display: flex;
+    padding-top: 30px;
+}
+.sidebar-menu {
+    margin-top: 27px;
+    .startdust-drop {
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 20px;
+        margin-bottom: 20px;
+        button {
+            margin-left: 10px;
+            font-size: 16px;
+        }
+        ul {
+            margin-left: 30px;
+            margin-top: 15px;
+            li {
+                margin-top: 15px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+//
+.body-info-left {
+    padding-right: 50px;
+    flex: 1;
+    justify-content: flex-end;
+    .form-group {
+        height: 40px;
+        display: flex;
+        margin-bottom: 30px;
+        .group-items {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            .form-label {
+                width: 20%;
+                text-align: right;
+                color: rgba(85, 85, 85, 0.8);
+                text-transform: capitalize;
+                overflow: hidden;
+            }
+            .form-input {
+                height: 100%;
+                width: 80%;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                padding-left: 20px;
+                input,
+                select {
+                    padding-left: 15px;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 2px;
+                    border: 1px solid rgba(0, 0, 0, 0.14);
+                }
+            }
+        }
+    }
+}
+.body-info-right {
+    display: flex;
+    justify-content: center;
+    width: 280px;
+    border-left: 1px solid #efefef;
+    .right-avatar {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .avatar-thumb {
+            display: flex;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            margin: 20px 0 20px 0;
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+        input {
+            display: none;
+        }
+        button {
+            height: 40px;
+            padding: 0 20px;
+            min-width: 70px;
+            max-width: 220px;
+            color: #555;
+            border: 1px solid rgba(0, 0, 0, 0.09);
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: visible;
+            border-radius: 2px;
+        }
+        .note-upload {
+            margin-top: 12px;
+            height: 40px;
+            color: #999;
+        }
+    }
+}
