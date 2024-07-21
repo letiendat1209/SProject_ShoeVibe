@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '~/services/CartContext'; // Adjust the path if necessary
 import classNames from 'classnames/bind';
 import styles from './Cart.module.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicket } from '@fortawesome/free-solid-svg-icons';
+import LocationSelector from '~/components/LocationSelector'; // Import the new component
 
 const cx = classNames.bind(styles);
 
 function Cart() {
     const { cart, removeFromCart, updateQuantity } = useCart();
+    const [location, setLocation] = useState({ cityId: '', districtId: '', wardId: '' });
 
     const handleRemove = (uniqueId) => {
         removeFromCart(uniqueId);
@@ -22,6 +24,11 @@ function Cart() {
             handleRemove(uniqueId);
         }
     };
+
+    const handleLocationChange = (newLocation) => {
+        setLocation(newLocation);
+    };
+
     const totalPrice = cart.reduce((total, item) => total + item.quantity * item.price, 0);
 
     return (
@@ -35,7 +42,7 @@ function Cart() {
                 </div>
             </section>
             <div className={cx('cart-page')}>
-                <div className={cx('container pd12')}>
+                <div className={cx('container', 'pd12')}>
                     <div className={cx('cart-list')}>
                         <div className={cx('cart-list-header')}>
                             <div className={cx('header-title')}>Sản phẩm</div>
@@ -65,7 +72,13 @@ function Cart() {
                                             <div className={cx('item-prices')}>
                                                 <div>
                                                     <span className={cx('price-old')}>{item.oldPrice} đ</span>
-                                                    <span className={cx('price')}>{item.price} đ</span>
+                                                    <span className={cx('price')}>
+                                                        {new Intl.NumberFormat('vi-VN', {
+                                                            style: 'currency',
+                                                            currency: 'VND',
+                                                        }).format(item.price)}{' '}
+                                                        đ
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div className={cx('item-quantity')}>
@@ -95,7 +108,12 @@ function Cart() {
                                                 </div>
                                             </div>
                                             <div className={cx('item-total')}>
-                                                <span>{item.quantity * item.price} đ</span>
+                                                <span>
+                                                    {new Intl.NumberFormat('vi-VN', {
+                                                        style: 'currency',
+                                                        currency: 'VND',
+                                                    }).format(item.quantity * item.price)}
+                                                </span>
                                             </div>
                                             <div className={cx('item-action')}>
                                                 <button onClick={() => handleRemove(item.uniqueId)}>Xóa</button>
@@ -107,7 +125,7 @@ function Cart() {
                         ))}
                     </div>
                     <div className={cx('line-space')}></div>
-                    <div className={cx('row cart-total')}>
+                    <div className={cx('row', 'cart-total')}>
                         <div className={cx('col-6')}>
                             <div>
                                 <div className={cx('final-top')}>
@@ -117,6 +135,7 @@ function Cart() {
                                     <span className={cx('top-code')}>
                                         <select className={cx('form-select')}>
                                             <option>--Chọn--</option>
+                                            <option>Trống</option>
                                         </select>
                                     </span>
                                 </div>
@@ -156,19 +175,69 @@ function Cart() {
                     </div>
                     <div className={cx('row')}>
                         <div className={cx('col-12')}>
-                            <strong> THÔNG TIN ĐẶT HÀNG</strong>
-                            <p>Nhập mã tỉnh thành để có phí ship chính xác nhất</p>
+                            <strong> THÔNG TIN VẬN CHUYỂN </strong>
+                            <Link>
+                                <p className={cx('change-address')}>Thay đổi thông tin nhận hàng</p>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className={cx('infor-user')}>
+                        <div className={cx('r-iu')}>
+                            <span>Người nhận: </span>
+                            <span></span>
+                        </div>
+                        <div className={cx('r-iu')}>
+                            <span>Điện thoại: </span>
+                            <span></span>
+                        </div>
+                        <div className={cx('r-iu')}>
+                            <span>Địa chỉ :</span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div className={cx('info-input', 'row')}>
+                        <div className={cx('col-md-4')}>
                             <div className={cx('form-group')}>
-                                <select className={cx('form-select')}>
-                                    <option>--Chọn--</option>
-                                </select>
+                                <div className={cx('group-items')}>
+                                    <div className={cx('form-input')}>
+                                        <input type="text" placeholder="Họ tên" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={cx('col-md-4')}>
+                            <div className={cx('form-group')}>
+                                <div className={cx('group-items')}>
+                                    <div className={cx('form-input')}>
+                                        <input type="text" placeholder="SĐT" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={cx('col-md-12')}>
+                            <div className={cx('form-group')}>
+                                <div className={cx('group-items')}>
+                                    <div className={cx('form-input')}>
+                                        <textarea type="text" rows="4" cols="50" placeholder="Địa chỉ" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={cx('col-md-4')}>
+                            <div className={cx('form-group')}>
+                                <div className={cx('group-items')}>
+                                    <div className={cx('form-input')}>
+                                        <LocationSelector onLocationChange={handleLocationChange} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className={cx('footer-right')}>
-                        <Link to="/order" className={cx('btn-buy')}>
-                            Mua hàng
-                        </Link>
+                    <div className={cx('address-gues')}></div>
+                    <div className={cx('Order')}>
+                        <button className={cx('btn-order')}>
+                            <span>Đặt hàng</span>
+                        </button>
                     </div>
                 </div>
             </div>
