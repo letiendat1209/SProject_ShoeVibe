@@ -30,7 +30,7 @@ const CartItems = sequelize.define(
     },
   },
   {
-    tableName: "cartitems", // Chỉ định rõ tên bảng
+    tableName: "cart_items", // Chỉ định rõ tên bảng
     timestamps: false,
   }
 );

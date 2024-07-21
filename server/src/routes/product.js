@@ -17,10 +17,4 @@ routerProduct.put("/:id", updateProduct);
 routerProduct.delete("/:id", remove);
 routerProduct.get("/category/:categoryId", getProductsByCategory);
 
-
-
-
-
-
-
 export default routerProduct;
