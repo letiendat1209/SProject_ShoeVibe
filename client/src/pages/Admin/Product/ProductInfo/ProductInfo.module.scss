@@ -1,0 +1,251 @@
+.content {
+    padding: 28px 32px;
+}
+.button-submit {
+    position: fixed;
+    width: 640px;
+    height: 75px;
+    background-color: #132144;
+    z-index: 99;
+    bottom: 0;
+    margin-bottom: 16px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 15px;
+    padding: 16px;
+    .btn-ghost-danger {
+        font-size: 16px;
+        padding: 9px 14px;
+        color: #ed4c78;
+    }
+    .btn-ghost-light {
+        font-size: 16px;
+
+        padding: 9px 14px;
+        color: #f9fafc;
+    }
+    .btn-primary {
+        font-size: 16px;
+        width: 100px;
+        color: #fff;
+        background-color: #377dff;
+        border-color: #377dff;
+        padding: 9px 14px;
+        border-radius: 0.3125rem;
+        transition: all 0.2s ease-in-out;
+    }
+}
+.page-header {
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid #e7eaf3;
+}
+.c-row {
+    align-items: center;
+    margin-bottom: 16px;
+}
+.mt-2 {
+    margin-top: 8px;
+    .mt-item {
+        margin-right: 16px;
+        color: #677788;
+    }
+}
+.page-header-title {
+    margin-bottom: 4px;
+    font-size: 23px;
+    font-weight: bold;
+}
+.c-col {
+    display: flex;
+    justify-content: center;
+    button {
+        font-size: 15px;
+    }
+}
+.btn {
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #377dff;
+    color: #fff;
+}
+///
+.cus-card {
+    margin-bottom: 28px;
+}
+.card-header {
+    padding: 16px 21px;
+    border-bottom: 1px solid #e7eaf3;
+    display: flex;
+    justify-content: space-between;
+    :hover {
+        button {
+            color: #377dff;
+        }
+    }
+    h4 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+}
+.card-body {
+    padding: 21px;
+}
+.form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    label {
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        input {
+            margin-right: 10px;
+        }
+        strong {
+            color: red;
+        }
+    }
+    input {
+        border-radius: 5px;
+        padding: 9px 14px;
+        border: 1px solid #e7eaf3;
+    }
+    select {
+        border-radius: 5px;
+        padding: 9px 14px;
+        border: 1px solid #e7eaf3;
+    }
+}
+.ac {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    .unit {
+        font-size: 16px;
+    }
+}
+//
+.media-gallery {
+    display: flex;
+    img {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    .bd {
+        border-radius: 15px;
+    }
+}
+.tc {
+    text-align: center;
+    border-left: 1px solid #e7eaf3;
+    :hover {
+        color: #377dff;
+    }
+}
+.cbm {
+    padding: 15px;
+}
+.pd {
+    padding: 0 8px 0 8px;
+    margin-bottom: 32px;
+}
+//
+.acctachFile {
+    border: 2px dashed #e7eaf3;
+    border-radius: 6px;
+    text-align: center;
+    transition: 0.3s;
+    padding: 48px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .custom-file {
+        text-align: center;
+        h5 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+}
+//
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Đảm bảo độ rộng của các cột cố định */
+
+    th,
+    td {
+        :hover {
+            color: #377dff;
+        }
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #e7eaf3;
+        word-wrap: break-word; /* Đảm bảo nội dung ngắt dòng khi quá dài */
+    }
+
+    th {
+        background-color: #f8f9fa;
+    }
+
+    .product-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
+    input[type='text'],
+    input[type='number'] {
+        width: 100%; /* Đảm bảo input chiếm hết độ rộng của ô */
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        button {
+            margin-right: 5px;
+        }
+    }
+
+    .quantity-controls {
+        display: flex;
+        align-items: center;
+        height: 72px;
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        input {
+            text-align: center;
+            margin: 0 5px;
+        }
+    }
+}
+.edit-button {
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+    margin-left: 5px;
+}
+.actions {
+    border: 1px solid #e7eaf3;
+    border-radius: 15px;
+    cursor: pointer;
+    color: #333;
+    justify-content: center;
+}
+//
+.main-img {
+    padding: 5px;
+    border: none !important;
+    img {
+        border-radius: 10px;
+    }
+}
