@@ -15,6 +15,6 @@ initRoutes.use("/auth", routerAuth);
 initRoutes.use("/size", routerSize);
 initRoutes.use("/color", routerColor);
 initRoutes.use("/cart", routerCart);
-initRoutes.use("/create-order", routerOrder);
+initRoutes.use("/orders", routerOrder);
 
 export default initRoutes;

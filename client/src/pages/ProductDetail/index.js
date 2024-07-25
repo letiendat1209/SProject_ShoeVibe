@@ -12,74 +12,92 @@ import { useCart } from '~/services/CartContext';
 const cx = classNames.bind(styles);
 
 function ProductDetail() {
-    const { addToCart } = useCart();
-    const { id } = useParams();
-    const [product, setProduct] = useState(null);
-    const [selectedColor, setSelectedColor] = useState(null);
-    const [selectedSize, setSelectedSize] = useState(null);
-    const getColorHex = (colorName) => {
-        const colorMap = {
-            Tím: '#8A2BE2',
-            Vàng: '#FFD700',
-            Xám: '#808080',
-            TrắngKem: '#FFF8DC',
-            Nâu: '#A52A2A',
-            Đen: '#000000',
-            Đỏ: '#FF0000',
-            XanhDương: '#0000FF',
-            XanhLáCây: '#008000',
-            VàngKim: '#FFC000',
-            Hồng: '#FFC0CB',
-            // Thêm các màu khác ở đây
+        const { addToCart } = useCart();
+        const { id } = useParams();
+        const [product, setProduct] = useState(null);
+        const [selectedColor, setSelectedColor] = useState(null);
+        const [selectedSize, setSelectedSize] = useState(null);
+        const [selectedVariant, setSelectedVariant] = useState(null);
+
+        const getColorHex = (colorName) => {
+            const colorMap = {
+                Tím: '#8A2BE2',
+                Vàng: '#FFD700',
+                Xám: '#808080',
+                TrắngKem: '#FFF8DC',
+                Nâu: '#A52A2A',
+                Đen: '#000000',
+                Đỏ: '#FF0000',
+                XanhDương: '#0000FF',
+                XanhLáCây: '#008000',
+                VàngKim: '#FFC000',
+                Hồng: '#FFC0CB',
+                // Thêm các màu khác ở đây
+            };
+            return colorMap[colorName] || '#000000'; // Mặc định là đen nếu không tìm thấy
         };
-        return colorMap[colorName] || '#000000'; // Mặc định là đen nếu không tìm thấy
-    };
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const data = await getProductById(id);
-                setProduct(data.data);
-            } catch (error) {
-                console.error('There was an error fetching the product data!', error);
+
+        useEffect(() => {
+            const fetchProduct = async () => {
+                try {
+                    const data = await getProductById(id);
+                    setProduct(data.data);
+                } catch (error) {
+                    console.error('There was an error fetching the product data!', error);
+                }
+            };
+
+            fetchProduct();
+        }, [id]);
+
+        if (!product) return <div>Loading...</div>;
+
+        const sanitizedDescription = DOMPurify.sanitize(product.des);
+
+        const handleAddToCart = () => {
+            if (!selectedVariant) {
+                alert('Vui lòng chọn màu và kích thước.');
+                return;
             }
+
+            addToCart({
+                id: product.id,
+                name: product.name,
+                price: selectedVariant.price,
+                image: product.ProductImages.find((image) => image.is_main).image_url,
+                quantity: 1,
+                color: selectedColor,
+                size: selectedSize,
+                color_id: selectedVariant.color_id,
+                size_id: selectedVariant.size_id,
+            });
         };
 
-        fetchProduct();
-    }, [id]);
+        const handleColorSelect = (color) => {
+            setSelectedColor(color);
+            setSelectedSize(null); // Reset kích thước khi chọn màu mới
+        };
 
-    if (!product) return <div>Loading...</div>;
+        const handleSizeSelect = (size) => {
+            setSelectedSize(size);
+            const variant = product.ProductVariants.find(
+                (variant) =>
+                    variant.ProductColor.color_name === selectedColor && variant.ProductSize.size_value === size,
+            );
+            setSelectedVariant(variant);
+        };
 
-    const sanitizedDescription = DOMPurify.sanitize(product.des);
+        const getAvailableSizes = () => {
+            if (!selectedColor) return [];
+            return product.ProductVariants.filter((variant) => variant.ProductColor.color_name === selectedColor).map(
+                (variant) => variant.ProductSize.size_value,
+            );
+        };
 
-    // Lấy thông tin sản phẩm bỏ vào cart
-    const handleAddToCart = () => {
-        addToCart({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.ProductImages.find((image) => image.is_main).image_url,
-            quantity: 1,
-            color: selectedColor,
-            size: selectedSize,
-        });
-    };
-
-    const handleColorSelect = (color) => {
-        setSelectedColor(color);
-        setSelectedSize(null); // Reset kích thước khi chọn màu mới
-    };
-
-    const handleSizeSelect = (size) => {
-        setSelectedSize(size);
-    };
-
-    const getAvailableSizes = () => {
-        if (!selectedColor) return [];
-        return product.ProductVariants.filter((variant) => variant.ProductColor.color_name === selectedColor).map(
-            (variant) => variant.ProductSize.size_value,
+        const uniqueColors = Array.from(
+            new Set(product.ProductVariants.map((variant) => variant.ProductColor.color_name)),
         );
-    };
-    const uniqueColors = Array.from(new Set(product.ProductVariants.map((variant) => variant.ProductColor.color_name)));
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('product-detail-layout')}>

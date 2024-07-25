@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/connectDatabase";
+import OrderDetail from "./OrderDetail";
 
 const Order = sequelize.define(
   "Order",
@@ -49,21 +50,21 @@ const Order = sequelize.define(
     },
   },
   {
-    tableName: "order", // Chỉ định rõ tên bảng
+    tableName: "order",
     timestamps: true,
+    createdAt: "created_at", // Sử dụng tên trường tùy chỉnh
+    updatedAt: "updated_at", // Sử dụng tên trường tùy chỉnh
   }
 );
 
-//
-import OrderDetail from './OrderDetail';
-
 Order.hasMany(OrderDetail, {
-  foreignKey: 'order_id',
-  as: 'orderDetails',
+  foreignKey: "order_id",
+  as: "orderDetails",
 });
 
 OrderDetail.belongsTo(Order, {
-  foreignKey: 'order_id',
-  as: 'order',
+  foreignKey: "order_id",
+  as: "order",
 });
+
 export default Order;
