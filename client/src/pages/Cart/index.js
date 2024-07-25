@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
-import { useCart } from '~/services/CartContext'; // Adjust the path if necessary
+import React, { useState, useEffect } from 'react';
+import { useCart } from '~/services/CartContext';
 import classNames from 'classnames/bind';
 import styles from './Cart.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicket } from '@fortawesome/free-solid-svg-icons';
-import LocationSelector from '~/components/LocationSelector'; // Import the new component
+import LocationSelector from '~/components/LocationSelector';
+import { createOrder } from '~/services/order';
 
 const cx = classNames.bind(styles);
 
+// Helper function to safely format currency
+const formatCurrency = (value) => {
+    return (value || 0).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+};
+
 function Cart() {
-    const { cart, removeFromCart, updateQuantity } = useCart();
+    const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
     const [location, setLocation] = useState({ cityId: '', districtId: '', wardId: '' });
+    const [customerInfo, setCustomerInfo] = useState({ name: '', phone: '', address: '' });
+    const [coupon, setCoupon] = useState('');
+    const [points, setPoints] = useState(0);
+    const nav = useNavigate();
 
     const handleRemove = (uniqueId) => {
         removeFromCart(uniqueId);
@@ -29,7 +39,39 @@ function Cart() {
         setLocation(newLocation);
     };
 
-    const totalPrice = cart.reduce((total, item) => total + item.quantity * item.price, 0);
+    const handleCustomerInfoChange = (e) => {
+        setCustomerInfo({ ...customerInfo, [e.target.name]: e.target.value });
+    };
+
+    const handlePlaceOrder = async () => {
+        try {
+            const orderData = {
+                items: cart.map((item) => ({
+                    product_id: item.id,
+                    color_id: item.color_id, // Sử dụng colorId thay vì color
+                    size_id: item.size_id, // Sử dụng sizeId thay vì size
+                    quantity: item.quantity,
+                    price: item.price,
+                })),
+                shippingAddress: { ...location, ...customerInfo },
+                coupon,
+                points,
+            };
+            console.log('Order Data:', orderData); // Log data being sent
+            const response = await createOrder(orderData);
+            alert('Đặt hàng thành công!');
+            clearCart();
+            nav('/', { state: { orderId: response.orderId } });
+        } catch (error) {
+            console.error('Lỗi khi đặt hàng:', error);
+            alert('Đặt hàng thất bại: ' + (error.response?.data?.details || 'Vui lòng thử lại sau.'));
+        }
+    };
+
+    const totalPrice = cart.reduce((total, item) => total + (item.quantity || 0) * (item.price || 0), 0);
+    const discount = 0; // Calculate based on coupon and points
+    const shippingFee = 0; // Calculate based on location and total price
+    const finalTotal = totalPrice - discount + shippingFee;
 
     return (
         <div className={cx('wrapper')}>
@@ -71,21 +113,20 @@ function Cart() {
                                             </div>
                                             <div className={cx('item-prices')}>
                                                 <div>
-                                                    <span className={cx('price-old')}>{item.oldPrice} đ</span>
-                                                    <span className={cx('price')}>
-                                                        {new Intl.NumberFormat('vi-VN', {
-                                                            style: 'currency',
-                                                            currency: 'VND',
-                                                        }).format(item.price)}{' '}
-                                                        đ
+                                                    <span className={cx('price-old')}>
+                                                        {formatCurrency(item.oldPrice)}
                                                     </span>
+                                                    <span className={cx('price')}>{formatCurrency(item.price)}</span>
                                                 </div>
                                             </div>
                                             <div className={cx('item-quantity')}>
                                                 <div className={cx('quantity-options')}>
                                                     <button
                                                         onClick={() =>
-                                                            handleQuantityChange(item.uniqueId, item.quantity - 1)
+                                                            handleQuantityChange(
+                                                                item.uniqueId,
+                                                                (item.quantity || 0) - 1,
+                                                            )
                                                         }
                                                         className={cx('btn-minus')}
                                                     >
@@ -94,12 +135,15 @@ function Cart() {
                                                     <input
                                                         type="text"
                                                         className={cx('btn-input')}
-                                                        value={item.quantity}
+                                                        value={item.quantity || 0}
                                                         readOnly
                                                     />
                                                     <button
                                                         onClick={() =>
-                                                            handleQuantityChange(item.uniqueId, item.quantity + 1)
+                                                            handleQuantityChange(
+                                                                item.uniqueId,
+                                                                (item.quantity || 0) + 1,
+                                                            )
                                                         }
                                                         className={cx('btn-plus')}
                                                     >
@@ -108,12 +152,7 @@ function Cart() {
                                                 </div>
                                             </div>
                                             <div className={cx('item-total')}>
-                                                <span>
-                                                    {new Intl.NumberFormat('vi-VN', {
-                                                        style: 'currency',
-                                                        currency: 'VND',
-                                                    }).format(item.quantity * item.price)}
-                                                </span>
+                                                <span>{formatCurrency((item.quantity || 0) * (item.price || 0))}</span>
                                             </div>
                                             <div className={cx('item-action')}>
                                                 <button onClick={() => handleRemove(item.uniqueId)}>Xóa</button>
@@ -133,18 +172,25 @@ function Cart() {
                                     <p>Mã coupon</p>
                                     <div className={cx('top-space')}></div>
                                     <span className={cx('top-code')}>
-                                        <select className={cx('form-select')}>
-                                            <option>--Chọn--</option>
-                                            <option>Trống</option>
-                                        </select>
+                                        <input
+                                            type="text"
+                                            value={coupon}
+                                            onChange={(e) => setCoupon(e.target.value)}
+                                            placeholder="Nhập mã coupon"
+                                        />
                                     </span>
                                 </div>
                                 <div className={cx('final-bottom')}>
                                     <FontAwesomeIcon icon={faTicket} color="red" />
-                                    <p className={cx('mg')}>Sử dụng điểm (Điểm của bạn: )</p>
+                                    <p className={cx('mg')}>Sử dụng điểm (Điểm của bạn: 1000)</p>
                                     <div className={cx('top-space')}></div>
                                     <span className={cx('top-code')}>
-                                        <input type="text" />
+                                        <input
+                                            type="number"
+                                            value={points}
+                                            onChange={(e) => setPoints(Number(e.target.value))}
+                                            max={1000}
+                                        />
                                     </span>
                                 </div>
                             </div>
@@ -152,47 +198,26 @@ function Cart() {
                         <div className={cx('col-6')}>
                             <div className={cx('total-price')}>
                                 <span>Tổng tiền hàng</span>
-                                <span>{totalPrice} đ</span>
+                                <span>{formatCurrency(totalPrice)}</span>
                             </div>
                             <div className={cx('total-price')}>
                                 <span>Giảm giá sản phẩm</span>
-                                <span>- 00 đ</span>
-                            </div>
-                            <div className={cx('total-price')}>
-                                <span>Giảm giá coupon</span>
-                                <span>- 0 đ</span>
+                                <span>- {formatCurrency(discount)}</span>
                             </div>
                             <div className={cx('total-price')}>
                                 <span>Phí vận chuyển</span>
-                                <span>00 đ</span>
+                                <span>{formatCurrency(shippingFee)}</span>
                             </div>
                             <div className={cx('line-space', 'pd')} />
                             <div className={cx('total-price')}>
                                 <span className={cx('red')}>TỔNG </span>
-                                <span className={cx('red')}>{totalPrice} đ</span>
+                                <span className={cx('red')}>{formatCurrency(finalTotal)}</span>
                             </div>
                         </div>
                     </div>
                     <div className={cx('row')}>
                         <div className={cx('col-12')}>
                             <strong> THÔNG TIN VẬN CHUYỂN </strong>
-                            <Link>
-                                <p className={cx('change-address')}>Thay đổi thông tin nhận hàng</p>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className={cx('infor-user')}>
-                        <div className={cx('r-iu')}>
-                            <span>Người nhận: </span>
-                            <span></span>
-                        </div>
-                        <div className={cx('r-iu')}>
-                            <span>Điện thoại: </span>
-                            <span></span>
-                        </div>
-                        <div className={cx('r-iu')}>
-                            <span>Địa chỉ :</span>
-                            <span></span>
                         </div>
                     </div>
                     <div className={cx('info-input', 'row')}>
@@ -200,7 +225,13 @@ function Cart() {
                             <div className={cx('form-group')}>
                                 <div className={cx('group-items')}>
                                     <div className={cx('form-input')}>
-                                        <input type="text" placeholder="Họ tên" />
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={customerInfo.name}
+                                            onChange={handleCustomerInfoChange}
+                                            placeholder="Họ tên"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -209,7 +240,13 @@ function Cart() {
                             <div className={cx('form-group')}>
                                 <div className={cx('group-items')}>
                                     <div className={cx('form-input')}>
-                                        <input type="text" placeholder="SĐT" />
+                                        <input
+                                            type="text"
+                                            name="phone"
+                                            value={customerInfo.phone}
+                                            onChange={handleCustomerInfoChange}
+                                            placeholder="SĐT"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +255,14 @@ function Cart() {
                             <div className={cx('form-group')}>
                                 <div className={cx('group-items')}>
                                     <div className={cx('form-input')}>
-                                        <textarea type="text" rows="4" cols="50" placeholder="Địa chỉ" />
+                                        <textarea
+                                            name="address"
+                                            value={customerInfo.address}
+                                            onChange={handleCustomerInfoChange}
+                                            rows="4"
+                                            cols="50"
+                                            placeholder="Địa chỉ"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -233,9 +277,8 @@ function Cart() {
                             </div>
                         </div>
                     </div>
-                    <div className={cx('address-gues')}></div>
                     <div className={cx('Order')}>
-                        <button className={cx('btn-order')}>
+                        <button className={cx('btn-order')} onClick={handlePlaceOrder}>
                             <span>Đặt hàng</span>
                         </button>
                     </div>
