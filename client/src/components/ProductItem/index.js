@@ -9,8 +9,21 @@ const cx = classNames.bind(styles);
 const ProductItem = ({ data }) => {
     const getColorHex = (colorName) => {
         const colorMap = {
-            Tím: '#8A2BE2',
-            Vàng: '#FFD700',
+            BẠC: '#C0C0C0', // Silver
+            KEM: '#FFFDD0', // Cream
+            NÂU: '#8B4513', // Saddle Brown
+            DA: '#F5F5DC', // Beige
+            ĐẤT: '#D2691E', // Chocolate
+            XANHLA: '#32CD32', // Lime Green
+            XÁM: '#808080', // Gray
+            ĐEN: '#000000', // Black
+            TRẮNG: '#FFFFFF', // White
+            ĐỎ: '#FF0000', // Red
+            XANHDUONG: '#0000FF', // Blue
+            VÀNG: '#FFFF00', // Yellow
+            HỒNG: '#FFC0CB', // Pink
+            TÍM: '#800080', // Purple
+            CAM: '#FFA500', // Orange
             // Thêm các màu khác ở đây
         };
         return colorMap[colorName] || '#000000'; // Mặc định là đen nếu không tìm thấy

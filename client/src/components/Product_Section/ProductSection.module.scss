@@ -22,7 +22,6 @@
     height: auto;
     img {
         max-width: 100%;
-        // height: 363px;
         height: auto;
     }
 }
@@ -65,16 +64,15 @@
         display: flex;
         justify-content: center;
         li {
-            width: 30px;
-            height: 30px;
+            width: 26px;
+            height: 26px;
             text-align: center;
             margin: 2px;
             border: 1px solid #ccc;
             border-radius: 50%;
             a {
-                width: 24px;
-                height: 24px;
-                line-height: 30px;
+                width: 100%;
+                height: 100%;
                 background-color: transparent;
                 .block-color {
                     width: 100%;
