@@ -9,7 +9,7 @@ import { login, register } from '~/services/authService';
 const cx = classNames.bind(styles);
 
 function Login() {
-    const nav = useNavigate()
+    const nav = useNavigate();
     const [loginData, setLoginData] = useState({ username: '', password: '' });
     const [registerData, setRegisterData] = useState({ username: '', email: '', password: '', confirmPassword: '' });
     const [error, setError] = useState(null);
@@ -37,16 +37,12 @@ function Login() {
             setError(null);
             // Tạo object chứa thông tin người dùng và accessToken
             const userData = {
-                user: response.data, 
+                user: response.data,
                 accessToken: response.accessToken,
             };
             // Lưu object này vào localStorage
             localStorage.setItem('user', JSON.stringify(userData));
-            if (response.data.role === 'admin') {
-                nav('/admin');
-            } else {
-                nav('/');
-            }
+            nav('/');
         } catch (err) {
             setError(err.message);
         }
@@ -74,6 +70,11 @@ function Login() {
                     <span id={cx('or-text')}>Or</span>
                     <div className={cx('login')}>
                         <h4>Đăng nhập</h4>
+                        {error && (
+                            <div className={cx('alert alert-danger', 'custom-alert')}>
+                                <span>{'Tên đăng nhập hoặc mật khẩu không đúng'}</span>
+                            </div>
+                        )}
                         <form onSubmit={handleLoginSubmit}>
                             <label htmlFor="username">
                                 Tên đăng nhập <span className={cx('required')}>*</span>
@@ -101,7 +102,6 @@ function Login() {
                                 Đăng nhập
                             </button>
                         </form>
-                        {error && <p className={cx('error')}>{error}</p>}
                         <span className={cx('forgotpassword')}>
                             <Link>Quên mật khẩu?</Link>
                         </span>
@@ -141,6 +141,11 @@ function Login() {
                     </div>
                     <div className={cx('register')}>
                         <h4>Đăng kí</h4>
+                        {error && (
+                            <div className={cx('alert alert-danger', 'custom-alert')}>
+                                <span>{error}</span>
+                            </div>
+                        )}
                         <form onSubmit={handleRegisterSubmit}>
                             <label htmlFor="username">
                                 Tên đăng nhập <span className={cx('required')}>*</span>
@@ -197,7 +202,6 @@ function Login() {
                                 Đăng ký
                             </button>
                         </form>
-                        {error && <p className={cx('error')}>{error}</p>}
                         <div className={cx('clear')}></div>
                         <div className={cx('note')}>
                             <p>

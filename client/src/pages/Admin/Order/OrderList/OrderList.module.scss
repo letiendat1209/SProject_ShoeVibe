@@ -1,0 +1,48 @@
+.content {
+    padding: 28px 32px;
+}
+.page-header {
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+}
+.custom-row {
+    display: flex;
+    margin-bottom: 16px;
+    align-items: center;
+}
+.page-header-title {
+    font-size: 21px;
+    font-weight: bold;
+    .badge-custom {
+        margin-left: 8px;
+        padding: 5px 8px;
+        color: #132144;
+        background-color: rgba(19, 33, 68, 0.1);
+        border-radius: 5px;
+        font-size: 16px;
+    }
+}
+.custom-col {
+    h4 {
+        margin-top: 8px;
+    }
+    a {
+        margin-right: 16px;
+        font-weight: 600;
+        color: #677788;
+    }
+}
+.nav-scroller {
+    position: relative;
+    .nav-tabs {
+        display: flex;
+        align-items: center;
+        height: 57px;
+        .nav-items {
+            .nav-link {
+                padding: 16px;
+            }
+        }
+    }
+}
+///

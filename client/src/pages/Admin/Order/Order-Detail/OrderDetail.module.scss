@@ -1,0 +1,128 @@
+.content {
+    padding: 28px 32px;
+}
+.page-header {
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid #e7eaf3;
+}
+.custom-row {
+    display: flex;
+    margin-bottom: 16px;
+    align-items: center;
+}
+.breadcrumbs {
+    display: flex;
+    ul {
+        display: flex;
+        margin-bottom: 4px;
+        li {
+            padding-left: 8px;
+        }
+    }
+}
+.page-header-title {
+    display: flex;
+    align-items: center;
+    h4 {
+        margin-bottom: 4px;
+        font-size: 22px;
+        font-weight: bold;
+    }
+    span {
+        margin-left: 16px;
+    }
+    .paid {
+        padding: 0 8px 0 5px;
+        border-radius: 5px;
+        font-size: 12px;
+        color: #00c9a7;
+        background-color: rgba(0, 201, 167, 0.1);
+    }
+    .unpaid {
+        padding: 0 8px 0 5px;
+        border-radius: 5px;
+        font-size: 12px;
+        color: #00c9db;
+        background-color: rgba(0, 201, 219, 0.1);
+    }
+}
+.mt2 {
+    margin-top: 15px;
+    a {
+        margin-right: 15px;
+    }
+}
+.card-custom {
+    .card-header {
+        padding: 16px 21px;
+        border-bottom: 1px solid #e7eaf3;
+        h4 {
+            font-size: 16px;
+            font-weight: bold;
+            span {
+                padding: 5px 8px;
+                margin-left: 4px;
+                border-radius: 5px;
+                color: #132144;
+                background-color: rgba(19, 33, 68, 0.1);
+            }
+        }
+    }
+    .card-body {
+        padding: 21px;
+        .media {
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e7eaf3;
+            .avatar {
+                width: 78px;
+                height: 78px;
+                overflow: hidden;
+                margin-right: 16px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            .avatar-circle {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 16px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            .media-body {
+                flex: 1;
+                .dflex {
+                    display: flex;
+                    h5 {
+                        font-weight: bold;
+                    }
+                    .custom-col {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+}
+.address {
+    span {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    p {
+        margin-bottom: 5px
+    };
+}

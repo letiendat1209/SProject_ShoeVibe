@@ -261,7 +261,7 @@ function Cart() {
                                             onChange={handleCustomerInfoChange}
                                             rows="4"
                                             cols="50"
-                                            placeholder="Địa chỉ"
+                                            placeholder="Địa chỉ / Số nhà"
                                         />
                                     </div>
                                 </div>

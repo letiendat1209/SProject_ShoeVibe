@@ -70,6 +70,7 @@ span#or-text {
 }
 .login-btn,
 .submit {
+    margin-bottom: 10px;
     width: 250px;
     padding: 9px;
     background-color: #333;
@@ -86,8 +87,12 @@ span#or-text {
     margin-left: 3px;
 }
 .forgotpassword {
-    margin-left: 15px;
     font-weight: 400;
+    &:hover {
+        a {
+            color: #0d6efd;
+        }
+    }
 }
 .social-network {
     padding-top: 10px;
@@ -161,4 +166,11 @@ span#or-text {
     width: 40%;
 }
 .relative {
+}
+//
+.custom-alert {
+    width: 96%;
+    height: 53px;
+    display: flex;
+    align-items: center;
 }
