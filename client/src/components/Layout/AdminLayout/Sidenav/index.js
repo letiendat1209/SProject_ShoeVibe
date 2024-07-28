@@ -84,7 +84,9 @@ function Sidenav() {
                     </div>
                     {activeMenu === 'orders' && (
                         <ul className={cx('submenu')}>
-                            <li className={cx('submenu-item')}>Orders</li>
+                            <Link to={'/admin/order-list'}>
+                                <li className={cx('submenu-item')}>Orders</li>
+                            </Link>
                             <li className={cx('submenu-item')}>Orders Details</li>
                             <li className={cx('submenu-item')}>Add Orders</li>
                         </ul>

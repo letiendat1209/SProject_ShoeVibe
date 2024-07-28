@@ -123,6 +123,46 @@
         font-weight: bold;
     }
     p {
-        margin-bottom: 5px
-    };
+        margin-bottom: 5px;
+    }
+}
+.custom-w {
+    width: 310px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 5px 0 12px 0;
+    font-weight: bold;
+    &:hover {
+        color: #377dff;
+    }
+}
+.df {
+    display: flex;
+    align-items: center;
+}
+.btn-custom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.btn-paid {
+    color: #00c9a7;
+    background-color: rgba(0, 201, 167, 0.1);
+}
+
+.btn-unpaid {
+    color: #00c9db;
+    background-color: rgba(0, 201, 219, 0.1);
 }

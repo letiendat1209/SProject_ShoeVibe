@@ -33,7 +33,7 @@ const privateRoutes = [
     { path: '/admin/createProduct', component: CreateProduct, layout: AdminLayout },
     { path: '/admin/product-detail/:id', component: ProductInfo, layout: AdminLayout },
     { path: '/admin/order-list', component: OrderList, layout: AdminLayout },
-    { path: '/admin/order-detail', component: OrderDetail, layout: AdminLayout },
+    { path: '/admin/orders/:orderId', component: OrderDetail, layout: AdminLayout },
 ];
 
 export { publicRoutes, privateRoutes };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useCart } from '~/services/CartContext';
 import classNames from 'classnames/bind';
 import styles from './Cart.module.scss';
@@ -45,7 +45,10 @@ function Cart() {
 
     const handlePlaceOrder = async () => {
         try {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const userId = userData ? userData.user.id : null;
             const orderData = {
+                user_id: userId,
                 items: cart.map((item) => ({
                     product_id: item.id,
                     color_id: item.color_id, // Sử dụng colorId thay vì color
@@ -53,7 +56,7 @@ function Cart() {
                     quantity: item.quantity,
                     price: item.price,
                 })),
-                shippingAddress: { ...location, ...customerInfo },
+                shippingAddress: { ...customerInfo, ...location },
                 coupon,
                 points,
             };
