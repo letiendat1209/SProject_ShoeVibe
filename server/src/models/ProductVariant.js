@@ -44,8 +44,6 @@ import ProductSize from "./ProductSize";
 
 ProductVariant.belongsTo(ProductColor, { foreignKey: "color_id" });
 ProductVariant.belongsTo(ProductSize, { foreignKey: "size_id" });
-// //
-// ProductColor.hasMany(ProductVariant, { foreignKey: "color_id" });
-// ProductSize.hasMany(ProductVariant, { foreignKey: "size_id" });
+
 
 export default ProductVariant;

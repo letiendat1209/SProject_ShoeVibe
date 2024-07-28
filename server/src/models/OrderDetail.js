@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/connectDatabase";
 import Order from "./Order";
+import ProductVariant from "./ProductVariant";
 
 const OrderDetail = sequelize.define(
   "OrderDetail",
@@ -48,5 +49,7 @@ const OrderDetail = sequelize.define(
     updatedAt: "updated_at", // Sử dụng tên trường tùy chỉnh
   }
 );
+
+OrderDetail.belongsTo(ProductVariant, { foreignKey: "product_variant_id" });
 
 export default OrderDetail;
