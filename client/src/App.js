@@ -52,7 +52,10 @@ function App() {
                                     path={route.path}
                                     element={
                                         <ProtectedRoute
-                                            isAllowed={userData && userData.user && userData.user.role === 'admin'}
+                                            isAllowed={
+                                                (userData && userData.user && userData.user.role === 'admin') ||
+                                                userData.user.role === 'seller'
+                                            }
                                         >
                                             <Layout>
                                                 <Page />

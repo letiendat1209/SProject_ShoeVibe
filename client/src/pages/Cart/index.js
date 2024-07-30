@@ -119,7 +119,12 @@ function Cart() {
                                                     <span className={cx('price-old')}>
                                                         {formatCurrency(item.oldPrice)}
                                                     </span>
-                                                    <span className={cx('price')}>{formatCurrency(item.price)}</span>
+                                                    <span className={cx('price')}>
+                                                        {new Intl.NumberFormat('vi-VN', {
+                                                            style: 'currency',
+                                                            currency: 'VND',
+                                                        }).format(item.price)}
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div className={cx('item-quantity')}>

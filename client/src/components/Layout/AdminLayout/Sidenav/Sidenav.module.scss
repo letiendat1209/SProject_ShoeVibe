@@ -1,5 +1,5 @@
 .side-menu {
-    position: fixed;
+    position: absolute;
     border: 1px solid #e7eaf3;
     width: 260px;
     z-index: 100;
@@ -80,6 +80,7 @@
             &:hover,
             &.active {
                 color: #377dff;
+                cursor: pointer;
             }
         }
     }

@@ -6,6 +6,7 @@ import routerSize from "./size";
 import routerColor from "./color";
 import routerCart from "./cart";
 import routerOrder from "./order";
+import routerUser from "./user";
 
 const initRoutes = Router();
 
@@ -16,5 +17,6 @@ initRoutes.use("/size", routerSize);
 initRoutes.use("/color", routerColor);
 initRoutes.use("/cart", routerCart);
 initRoutes.use("/orders", routerOrder);
+initRoutes.use("/users", routerUser);
 
 export default initRoutes;

@@ -1,10 +1,10 @@
-import ProductCategory from "../models/ProductCategory";
+import User from '../models/User'
+
 
 export const create = async (req, res) => {
   try {
-    //Validate here 
-    
-    const data = await ProductCategory.create(req.body);
+    //Validate here
+    const data = await User.create(req.body);
     if (!data) {
       throw new Error("Failed to create category!");
     }
@@ -19,9 +19,9 @@ export const create = async (req, res) => {
     });
   }
 };
-export const getAll = async (req, res) => {
+export const getAllUsers = async (req, res) => {
   try {
-    const data = await ProductCategory.findAll(req.body);
+    const data = await User.findAll(req.body);
     if (!data) {
       throw new Error("Failed !");
     }
@@ -38,12 +38,12 @@ export const getAll = async (req, res) => {
 };
 export const getDetail = async (req, res) => {
   try {
-    const data = await ProductCategory.findByPk(req.params.id);
+    const data = await User.findByPk(req.params.id);
     if (!data) {
       throw new Error("Failed !");
     }
     return res.status(200).json({
-      message: "Category created successfully",
+      message: "Get Detail User successfully",
       data,
     });
   } catch (error) {
@@ -55,14 +55,14 @@ export const getDetail = async (req, res) => {
 };
 export const update = async (req, res) => {
   try {
-    const data = await ProductCategory.findByPk(req.params.id, { new: true });
+    const data = await User.findByPk(req.params.id, { new: true });
     if (!data) {
-      throw new Error("Category not found!");
+      throw new Error("User not found!");
     }
-    // Cập nhật dữ liệu mới vào category
+    // Cập nhật dữ liệu mới vào User
     await data.update(req.body);
     return res.status(200).json({
-      message: "Category updated successfully",
+      message: "User updated successfully",
       data,
     });
   } catch (error) {
@@ -74,7 +74,7 @@ export const update = async (req, res) => {
 };
 export const remove = async (req, res) => {
   try {
-    const data = await ProductCategory.findByPk(req.params.id);
+    const data = await User.findByPk(req.params.id);
     if (!data) {
       throw new Error("Category not found!");
     }
@@ -91,5 +91,3 @@ export const remove = async (req, res) => {
     });
   }
 };
-
-
