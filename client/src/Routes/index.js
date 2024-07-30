@@ -1,6 +1,7 @@
 //Layouts
 import AdminLayout from '~/components/Layout/AdminLayout';
 import AdminDashboard from '~/pages/Admin/adminDashBoard';
+import CustomerList from '~/pages/Admin/Customer/Customer-list';
 import OrderDetail from '~/pages/Admin/Order/Order-Detail';
 import OrderList from '~/pages/Admin/Order/OrderList';
 import CreateProduct from '~/pages/Admin/Product/CreateProduct/CreateProduct';
@@ -34,6 +35,7 @@ const privateRoutes = [
     { path: '/admin/product-detail/:id', component: ProductInfo, layout: AdminLayout },
     { path: '/admin/order-list', component: OrderList, layout: AdminLayout },
     { path: '/admin/orders/:orderId', component: OrderDetail, layout: AdminLayout },
+    { path: '/admin/customer-list', component: CustomerList, layout: AdminLayout },
 ];
 
 export { publicRoutes, privateRoutes };

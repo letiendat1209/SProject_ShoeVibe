@@ -26,7 +26,9 @@ export const checkPermission = async (req, res, next) => {
       throw new Error("User not found");
     }
     if (user.role !== "admin") {
-      throw new Error("Insufficient permissions - Méo phải admin , cook mày -");
+      throw new Error(
+        "Insufficient permissions - Méo phải admin , cook mày -"
+      );
     }
 
     req.user = user; // Có thể hữu ích để truyền thông tin user cho các middleware tiếp theo

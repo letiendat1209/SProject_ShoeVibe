@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Sidenav.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faHome, faCog, faTag, faPen, faUsers, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faHome, faCog, faTag, faPen, faUsers, faLock, faBars } from '@fortawesome/free-solid-svg-icons';
 import images from '~/assets/images';
 import { useState } from 'react';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
@@ -51,7 +51,7 @@ function Sidenav() {
                         <ul className={cx('submenu')}>
                             <li className={cx('submenu-item')}>Overview</li>
                             <li className={cx('submenu-item')}>LeaderBoard</li>
-                            <li className={cx('submenu-item')}>Profile</li>
+                            <li className={cx('submenu-item')}>My Profile</li>
                             <li className={cx('submenu-item')}>Add User</li>
                         </ul>
                     )}
@@ -87,8 +87,6 @@ function Sidenav() {
                             <Link to={'/admin/order-list'}>
                                 <li className={cx('submenu-item')}>Orders</li>
                             </Link>
-                            <li className={cx('submenu-item')}>Orders Details</li>
-                            <li className={cx('submenu-item')}>Add Orders</li>
                         </ul>
                     )}
                     <div
@@ -101,8 +99,9 @@ function Sidenav() {
                     </div>
                     {activeMenu === 'customers' && (
                         <ul className={cx('submenu')}>
-                            <li className={cx('submenu-item')}>Customers</li>
-                            <li className={cx('submenu-item')}>Customer Details</li>
+                            <Link to={'/admin/customer-list'}>
+                                <li className={cx('submenu-item')}>Customers</li>
+                            </Link>
                             <li className={cx('submenu-item')}>Add Customers</li>
                         </ul>
                     )}
@@ -122,9 +121,30 @@ function Sidenav() {
                     </div>
                     {activeMenu === 'authendications' && (
                         <ul className={cx('submenu')}>
-                            <li className={cx('submenu-item')}>Sign In</li>
-                            <li className={cx('submenu-item')}>Sign Up</li>
                             <li className={cx('submenu-item')}>Reset Password</li>
+                        </ul>
+                    )}
+                    <div
+                        className={cx('menu-item', { active: activeMenu === 'more' })}
+                        onClick={() => toggleMenu('more')}
+                    >
+                        <span className={cx('label')}>More</span>
+                    </div>
+                    <div
+                        className={cx('menu-item', { active: activeMenu === 'more2' })}
+                        onClick={() => toggleMenu('more2')}
+                    >
+                        <FontAwesomeIcon icon={faBars} className={cx('icon')} />
+                        <span className={cx('label')}> Others</span>
+                        <FontAwesomeIcon icon={faChevronDown} className={cx('icon')} />
+                    </div>
+                    {activeMenu === 'more2' && (
+                        <ul className={cx('submenu')}>
+                            <li className={cx('submenu-item')}>New Categories</li>
+                            <li className={cx('submenu-item')}>New Collection</li>
+                            <li className={cx('submenu-item')}>Add more Size</li>
+                            <li className={cx('submenu-item')}>Add more new Variant</li>
+                            <li className={cx('submenu-item')}>New Coupon</li>
                         </ul>
                     )}
                     <div className={cx('menu-item')}>
