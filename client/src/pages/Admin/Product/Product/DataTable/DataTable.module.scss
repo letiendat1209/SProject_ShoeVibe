@@ -20,10 +20,28 @@
         }
     }
     .product-name {
-        max-width: 200px; /* Bạn có thể thay đổi giá trị này phù hợp với thiết kế của bạn */
+        max-width: 200px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: baseline;
+            img {
+                margin-right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+            &:hover {
+                color: #2196f3;
+            }
+        }
+    }
+    .custom-product-name {
+        img {
+            border-radius: 50%;
+        }
     }
     .table {
         width: 100%;
@@ -156,5 +174,4 @@
     flex-direction: column;
     padding: 10px;
     border-radius: 5px;
-
 }

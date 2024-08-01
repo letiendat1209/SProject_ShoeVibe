@@ -2,23 +2,11 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../../../Product/Product/DataTable/DataTable.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faEye, faCancel, faTruckFast, faCheck, faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-
-import { getAllOrders, updateOrderStatus } from '~/services/order';
-import { format } from 'date-fns';
-import Tippy from '@tippyjs/react';
+import { getAllUsers } from '~/services/userServices';
 
 const cx = classNames.bind(styles);
-
-const isValidJSON = (str) => {
-    try {
-        JSON.parse(str);
-        return true;
-    } catch (e) {
-        return false;
-    }
-};
 
 function DataTable({ filter }) {
     const [actionsVisible, setActionsVisible] = useState(null);
@@ -30,13 +18,18 @@ function DataTable({ filter }) {
 
     useEffect(() => {
         async function fetchData() {
+            setLoading(true); // Set loading to true at the beginning
             try {
-                const response = await getAllOrders();
-                setData(response.data);
+                const response = await getAllUsers();
+                if (response && response.data) {
+                    setData(response.data);
+                } else {
+                    console.error('No data received');
+                }
             } catch (error) {
                 console.error('Error fetching customer:', error);
             } finally {
-                setLoading(false);
+                setLoading(false); // Ensure loading is set to false after fetch
             }
         }
 
@@ -56,41 +49,32 @@ function DataTable({ filter }) {
     };
 
     const filteredData = data
-        .filter((order) => {
-            if (filter === 'paid') {
-                return order.payment_status === 'paid';
-            } else if (filter === 'unpaid') {
-                return order.payment_status === 'unpaid';
-            } else if (filter === 'processing') {
-                return order.status === 'processing';
-            } else if (filter === 'shipped') {
-                return order.status === 'shipped';
-            } else if (filter === 'delivered') {
-                return order.status === 'delivered';
-            } else if (filter === 'cancelled') {
-                return order.status === 'cancelled';
+        .filter((user) => {
+            if (filter === 'admin') {
+                return user.role === 'admin';
+            } else if (filter === 'seller') {
+                return user.role === 'seller';
+            } else if (filter === 'customer') {
+                return user.role === 'customer';
             }
             return true; // 'all' filter
         })
-        .filter(
-            (order) =>
-                order.id.toString().includes(searchTerm) ||
-                (order.shipping_address && order.shipping_address.toLowerCase().includes(searchTerm.toLowerCase())),
-        );
+        .filter((user) => {
+            const idMatch = user.id.toString().includes(searchTerm);
+            const usernameMatch = user.username
+                ? user.username.toLowerCase().includes(searchTerm.toLowerCase())
+                : false;
+            const fullnameMatch = user.fullname
+                ? user.fullname.toLowerCase().includes(searchTerm.toLowerCase())
+                : false;
+
+            return idMatch || usernameMatch || fullnameMatch;
+        });
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-    const handleUpdateOrderStatus = async (orderId, status) => {
-        try {
-            await updateOrderStatus(orderId, status);
-            setData((prevData) => prevData.map((order) => (order.id === orderId ? { ...order, status } : order)));
-        } catch (error) {
-            console.error('Error updating order status:', error);
-        }
-    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -113,102 +97,38 @@ function DataTable({ filter }) {
                         <th>
                             <input type="checkbox" />
                         </th>
-                        <th>ORDER</th>
-                        <th>DATE</th>
-                        <th>CUSTOMER</th>
-                        <th>PAYMENT STATUS</th>
-                        <th>PAYMENT METHOD</th>
-                        <th>TOTAL</th>
-                        <Tippy
-                            content={
-                                <div className={cx('notice-status')}>
-                                    <span>Pending : Chờ xử lý</span>
-                                    <span>Processing : Đang chuẩn bị</span>
-                                    <span>Shipped : Đã vận chuyển</span>
-                                    <span>Delivered : Đã giao</span>
-                                    <span>Cancelled : Hủy đơn</span>
-                                </div>
-                            }
-                        >
-                            <th>STATUS</th>
-                        </Tippy>
-                        <th>ACTIONS</th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Phone</th>
+                        <th>Account Role</th>
+                        <th>Orders</th>
+                        <th>Total spend</th>
                     </tr>
                 </thead>
                 <tbody>
                     {currentItems.map((item) => {
-                        let shippingAddress = {};
-                        let customerName = '';
-
-                        if (isValidJSON(item.shipping_address)) {
-                            shippingAddress = JSON.parse(item.shipping_address);
-                            customerName = shippingAddress.name || 'Unknown';
-                        } else {
-                            console.error('Invalid shipping address JSON:', item.shipping_address);
-                            customerName = 'Unknown';
-                        }
-
-                        const formattedDate = format(new Date(item.created_at), 'dd/MM/yyyy');
-
                         return (
                             <tr key={item.id}>
                                 <td>
                                     <input type="checkbox" />
                                 </td>
-                                <td className={cx('product-name')}>
-                                    <Link to={`/admin/orders/${item.id}`}>#DH{item.id}</Link>
+                                <td className={cx('product-name','custom-product-name')}>
+                                    <Link       >
+                                        <img
+                                            src={
+                                                item.avatar ||
+                                                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png'
+                                            }
+                                            alt="User Avatar"
+                                        />
+                                        <strong>{item.fullname || item.username}</strong>
+                                    </Link>
                                 </td>
-                                <td>{formattedDate}</td>
-                                <td>{customerName}</td>
-                                <td>{item.payment_status}</td>
-                                <td>{item.payment_method}</td>
-                                <td>
-                                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
-                                        item.total_amount,
-                                    )}
-                                </td>
-                                <td>{item.status}</td>
-                                <td>
-                                    <div className={cx('actions')}>
-                                        <button className={cx('edit-button')} onClick={() => toggleActions(item.id)}>
-                                            <FontAwesomeIcon icon={faEdit} />
-                                            Action
-                                        </button>
-                                        {actionsVisible === item.id && (
-                                            <div className={cx('dropdown')}>
-                                                <div className={cx('dropdown-item')}>
-                                                    <Link to={`/admin/orders/${item.id}`}>
-                                                        <FontAwesomeIcon icon={faEye} /> Watch
-                                                    </Link>
-                                                </div>
-                                                <div
-                                                    className={cx('dropdown-item')}
-                                                    onClick={() => handleUpdateOrderStatus(item.id, 'processing')}
-                                                >
-                                                    <FontAwesomeIcon icon={faClipboardList} /> Processing
-                                                </div>
-                                                <div
-                                                    className={cx('dropdown-item')}
-                                                    onClick={() => handleUpdateOrderStatus(item.id, 'shipped')}
-                                                >
-                                                    <FontAwesomeIcon icon={faTruckFast} /> Shipped
-                                                </div>
-                                                <div
-                                                    className={cx('dropdown-item')}
-                                                    onClick={() => handleUpdateOrderStatus(item.id, 'delivered')}
-                                                >
-                                                    <FontAwesomeIcon icon={faCheck} /> Delivered
-                                                </div>
-                                                <div
-                                                    className={cx('dropdown-item')}
-                                                    onClick={() => handleUpdateOrderStatus(item.id, 'cancelled')}
-                                                >
-                                                    <FontAwesomeIcon icon={faCancel} /> Cancelled
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                </td>
+                                <td>{item.email}</td>
+                                <td>{item.telephone || 'None'}</td>
+                                <td>{item.role}</td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         );
                     })}
