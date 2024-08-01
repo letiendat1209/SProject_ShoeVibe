@@ -74,16 +74,18 @@ function DataTable() {
                                 <input type="checkbox" />
                             </td>
                             <td className={cx('product-name')}>
-                                <img
-                                    src={
-                                        item.ProductImages && item.ProductImages.length > 0
-                                            ? item.ProductImages[0].image_url
-                                            : 'default_image_url.jpg'
-                                    }
-                                    alt={item.name}
-                                    className={cx('product-image')}
-                                />
-                                <Link to={`/admin/product-detail/${item.id}`}>{item.name}</Link>
+                                <Link to={`/admin/product-detail/${item.id}`}>
+                                    <img
+                                        src={
+                                            item.ProductImages && item.ProductImages.length > 0
+                                                ? item.ProductImages[0].image_url
+                                                : 'default_image_url.jpg'
+                                        }
+                                        alt={item.name}
+                                        className={cx('product-image')}
+                                    />
+                                    {item.name}
+                                </Link>
                             </td>
                             <td>{item.ProductCategory ? item.ProductCategory.name : 'Unknown Category'}</td>
                             <td>

@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './CustomerList.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import DataTable from './Datatable/DataTable';
+import { getAllUsers } from '~/services/userServices';
 
 const cx = classNames.bind(styles);
 
 function CustomerList() {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
     const handleFilterChange = (newFilter) => {
         setFilter(newFilter);
     };
 
+    const totalUsers = Math.ceil(data.length);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await getAllUsers();
+                setData(response.data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchData();
+    }, []);
     return (
         <div className={cx('content')}>
             <div className={cx('page-header')}>
@@ -21,7 +39,7 @@ function CustomerList() {
                     <div className={cx('col-sm', 'custom-col')}>
                         <h1 className={cx('page-header-title')}>
                             Customer
-                            <span className={cx('badge-custom')}>102,251</span>
+                            <span className={cx('badge-custom')}>{totalUsers}</span>
                         </h1>
                         <h4>
                             <Link>
@@ -44,7 +62,7 @@ function CustomerList() {
                         <li className={cx('nav-items')}>
                             <Link
                                 className={cx('nav-link', { active: filter === 'admin' })}
-                                onClick={() => handleFilterChange('paid')}
+                                onClick={() => handleFilterChange('admin')}
                             >
                                 Admin
                             </Link>
@@ -52,7 +70,7 @@ function CustomerList() {
                         <li className={cx('nav-items')}>
                             <Link
                                 className={cx('nav-link', { active: filter === 'seller' })}
-                                onClick={() => handleFilterChange('unpaid')}
+                                onClick={() => handleFilterChange('seller')}
                             >
                                 Seller
                             </Link>
@@ -60,7 +78,7 @@ function CustomerList() {
                         <li className={cx('nav-items')}>
                             <Link
                                 className={cx('nav-link', { active: filter === 'customer' })}
-                                onClick={() => handleFilterChange('processing')}
+                                onClick={() => handleFilterChange('customer')}
                             >
                                 Customer
                             </Link>

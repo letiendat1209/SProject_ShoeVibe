@@ -1,6 +1,6 @@
 //Layouts
 import AdminLayout from '~/components/Layout/AdminLayout';
-import AdminDashboard from '~/pages/Admin/adminDashBoard';
+import AdminDashboard from '~/pages/Admin/AdminDashBoard/adminDashBoard';
 import CustomerList from '~/pages/Admin/Customer/Customer-list';
 import OrderDetail from '~/pages/Admin/Order/Order-Detail';
 import OrderList from '~/pages/Admin/Order/OrderList';

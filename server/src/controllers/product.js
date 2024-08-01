@@ -1,5 +1,5 @@
 import { sequelize } from "../config/connectDatabase";
-import Product from "../models/product";
+import Product from "../models/Product";
 import ProductCategory from "../models/ProductCategory";
 import ProductColor from "../models/ProductColor";
 import ProductImages from "../models/ProductImages";

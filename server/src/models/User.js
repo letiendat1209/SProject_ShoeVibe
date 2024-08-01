@@ -52,5 +52,4 @@ const User = sequelize.define(
     timestamps: false,
   }
 );
-
 export default User;

@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api'; // Thay thế bằng URL thực tế của server
 
-
 export const createUser = async (UserData) => {
     try {
         const response = await axios.post(`${API_URL}/users`, UserData);
@@ -11,7 +10,6 @@ export const createUser = async (UserData) => {
         throw error.response.data;
     }
 };
-
 
 export const getAllUsers = async () => {
     try {
