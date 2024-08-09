@@ -2,18 +2,31 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './DataTable.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash, faArchive, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import {
+    faEdit,
+    faTrash,
+    faArchive,
+    faEye,
+    faEyeSlash,
+    faCodeMerge,
+    faSortAlphaAsc,
+    faSortAlphaDesc,
+} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-
 import { getProduct } from '~/services/productService';
+import * as XLSX from 'xlsx';
 
 const cx = classNames.bind(styles);
 
-function DataTable() {
+function DataTable({ filter }) {
     const [actionsVisible, setActionsVisible] = useState(null);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [sortColumn, setSortColumn] = useState('name');
+    const [sortOrder, setSortOrder] = useState('asc');
+
     const itemsPerPage = 5;
 
     useEffect(() => {
@@ -39,10 +52,64 @@ function DataTable() {
         setCurrentPage(pageNumber);
     };
 
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleSort = (column) => {
+        if (sortColumn === column) {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortColumn(column);
+            setSortOrder('asc');
+        }
+    };
+
+    const sortedData = [...data].sort((a, b) => {
+        if (a[sortColumn] < b[sortColumn]) {
+            return sortOrder === 'asc' ? -1 : 1;
+        }
+        if (a[sortColumn] > b[sortColumn]) {
+            return sortOrder === 'asc' ? 1 : -1;
+        }
+        return 0;
+    });
+
+    const filteredData = sortedData
+        .filter((product) => {
+            if (filter === 'GIÀY NAM') {
+                return product.ProductCategory.name === 'GIÀY NAM';
+            } else if (filter === 'GIÀY NỮ') {
+                return product.ProductCategory.name === 'GIÀY NỮ';
+            } else if (filter === 'GIÀY CẶP') {
+                return product.ProductCategory.name === 'GIÀY CẶP';
+            } else if (filter === 'BALO-TÚI') {
+                return product.ProductCategory.name === 'BALO-TÚI';
+            } else if (filter === 'PHỤ KIỆN') {
+                return product.ProductCategory.name === 'PHỤ KIỆN';
+            }
+            return true;
+        })
+        .filter(
+            (product) =>
+                product.id.toString().includes(searchTerm) ||
+                (product.name && product.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                (product.ProductCategory &&
+                    product.ProductCategory.name.toLowerCase().includes(searchTerm.toLowerCase())),
+        );
+
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+    const exportToExcel = () => {
+        const worksheet = XLSX.utils.json_to_sheet(filteredData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Products');
+        XLSX.writeFile(workbook, 'products.xlsx');
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -50,7 +117,16 @@ function DataTable() {
     return (
         <div className={cx('data-table')}>
             <div className={cx('header')}>
-                <input type="text" placeholder="Search products" className={cx('search')} />
+                <input
+                    type="text"
+                    placeholder="Search products"
+                    className={cx('search')}
+                    value={searchTerm}
+                    onChange={handleSearch}
+                />
+                <button onClick={exportToExcel} className={cx('export-button')}>
+                    Export to Excel
+                </button>
             </div>
             <table className={cx('table')}>
                 <thead>
@@ -58,11 +134,30 @@ function DataTable() {
                         <th>
                             <input type="checkbox" />
                         </th>
-                        <th>PRODUCT</th>
-                        <th>CATEGORY</th>
+                        <th onClick={() => handleSort('name')}>
+                            PRODUCT{' '}
+                            <FontAwesomeIcon
+                                icon={sortColumn === 'name' && sortOrder === 'asc' ? faSortAlphaAsc : faSortAlphaDesc}
+                            />
+                        </th>
+                        <th onClick={() => handleSort('ProductCategory.name')}>
+                            CATEGORY{' '}
+                            <FontAwesomeIcon
+                                icon={
+                                    sortColumn === 'ProductCategory.name' && sortOrder === 'asc'
+                                        ? faSortAlphaAsc
+                                        : faSortAlphaDesc
+                                }
+                            />
+                        </th>
                         <th>STOCK</th>
                         <th>SKU</th>
-                        <th>PRICE</th>
+                        <th onClick={() => handleSort('price')}>
+                            PRICE{' '}
+                            <FontAwesomeIcon
+                                icon={sortColumn === 'price' && sortOrder === 'asc' ? faSortAlphaAsc : faSortAlphaDesc}
+                            />
+                        </th>
                         <th>VARIANTS</th>
                         <th>ACTIONS</th>
                     </tr>

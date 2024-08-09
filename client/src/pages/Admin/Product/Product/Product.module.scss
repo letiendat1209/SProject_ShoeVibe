@@ -45,3 +45,26 @@
     color: #fff;
 }
 ///
+.nav-scroller {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    .nav-tabs {
+        display: flex;
+        border-bottom: 1px solid #ddd;
+        align-items: center;
+        height: 57px;
+        .nav-items {
+            .nav-link {
+                padding: 10px 15px;
+                cursor: pointer;
+                text-decoration: none;
+                color: #555;
+                &.active {
+                    color: #1976d2;
+                    border-bottom: 2px solid #1976d2;
+                }
+            }
+        }
+    }
+}

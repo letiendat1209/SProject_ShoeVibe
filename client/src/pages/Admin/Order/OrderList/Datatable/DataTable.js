@@ -2,7 +2,16 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../../../Product/Product/DataTable/DataTable.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faEye, faCancel, faTruckFast, faCheck, faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import {
+    faEdit,
+    faEye,
+    faCancel,
+    faTruckFast,
+    faCheck,
+    faClipboardList,
+    faSortAlphaAsc,
+    faSortAlphaDesc,
+} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import { getAllOrders, updateOrderStatus } from '~/services/order';
@@ -26,6 +35,7 @@ function DataTable({ filter }) {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
+    const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' });
     const itemsPerPage = 5;
 
     useEffect(() => {
@@ -55,28 +65,52 @@ function DataTable({ filter }) {
         setSearchTerm(e.target.value);
     };
 
-    const filteredData = data
-        .filter((order) => {
-            if (filter === 'paid') {
-                return order.payment_status === 'paid';
-            } else if (filter === 'unpaid') {
-                return order.payment_status === 'unpaid';
-            } else if (filter === 'processing') {
-                return order.status === 'processing';
-            } else if (filter === 'shipped') {
-                return order.status === 'shipped';
-            } else if (filter === 'delivered') {
-                return order.status === 'delivered';
-            } else if (filter === 'cancelled') {
-                return order.status === 'cancelled';
+    const handleSort = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    };
+
+    const getSortedData = (data) => {
+        if (!sortConfig.key) return data;
+
+        return [...data].sort((a, b) => {
+            if (a[sortConfig.key] < b[sortConfig.key]) {
+                return sortConfig.direction === 'asc' ? -1 : 1;
             }
-            return true; // 'all' filter
-        })
-        .filter(
-            (order) =>
-                order.id.toString().includes(searchTerm) ||
-                (order.shipping_address && order.shipping_address.toLowerCase().includes(searchTerm.toLowerCase())),
-        );
+            if (a[sortConfig.key] > b[sortConfig.key]) {
+                return sortConfig.direction === 'asc' ? 1 : -1;
+            }
+            return 0;
+        });
+    };
+
+    const filteredData = getSortedData(
+        data
+            .filter((order) => {
+                if (filter === 'paid') {
+                    return order.payment_status === 'paid';
+                } else if (filter === 'unpaid') {
+                    return order.payment_status === 'unpaid';
+                } else if (filter === 'processing') {
+                    return order.status === 'processing';
+                } else if (filter === 'shipped') {
+                    return order.status === 'shipped';
+                } else if (filter === 'delivered') {
+                    return order.status === 'delivered';
+                } else if (filter === 'cancelled') {
+                    return order.status === 'cancelled';
+                }
+                return true; // 'all' filter
+            })
+            .filter(
+                (order) =>
+                    order.id.toString().includes(searchTerm) ||
+                    (order.shipping_address && order.shipping_address.toLowerCase().includes(searchTerm.toLowerCase())),
+            ),
+    );
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -114,24 +148,48 @@ function DataTable({ filter }) {
                             <input type="checkbox" />
                         </th>
                         <th>ORDER</th>
-                        <th>DATE</th>
+                        <th onClick={() => handleSort('created_at')}>
+                            DATE
+                            <FontAwesomeIcon
+                                icon={
+                                    sortConfig.key === 'created_at'
+                                        ? sortConfig.direction === 'asc'
+                                            ? faSortAlphaAsc
+                                            : faSortAlphaDesc
+                                        : faSortAlphaAsc
+                                }
+                            />
+                        </th>
                         <th>CUSTOMER</th>
                         <th>PAYMENT STATUS</th>
                         <th>PAYMENT METHOD</th>
-                        <th>TOTAL</th>
-                        <Tippy
-                            content={
-                                <div className={cx('notice-status')}>
-                                    <span>Pending : Chờ xử lý</span>
-                                    <span>Processing : Đang chuẩn bị</span>
-                                    <span>Shipped : Đã vận chuyển</span>
-                                    <span>Delivered : Đã giao</span>
-                                    <span>Cancelled : Hủy đơn</span>
-                                </div>
-                            }
-                        >
-                            <th>STATUS</th>
-                        </Tippy>
+                        <th onClick={() => handleSort('total_amount')}>
+                            TOTAL
+                            <FontAwesomeIcon
+                                icon={
+                                    sortConfig.key === 'total_amount'
+                                        ? sortConfig.direction === 'asc'
+                                            ? faSortAlphaAsc
+                                            : faSortAlphaDesc
+                                        : faSortAlphaAsc
+                                }
+                            />
+                        </th>
+                        <th>
+                            <Tippy
+                                content={
+                                    <div className={cx('notice-status')}>
+                                        <span>Pending : Chờ xử lý</span>
+                                        <span>Processing : Đang chuẩn bị</span>
+                                        <span>Shipped : Đã vận chuyển</span>
+                                        <span>Delivered : Đã giao</span>
+                                        <span>Cancelled : Hủy đơn</span>
+                                    </div>
+                                }
+                            >
+                                <span>STATUS</span>
+                            </Tippy>
+                        </th>
                         <th>ACTIONS</th>
                     </tr>
                 </thead>
