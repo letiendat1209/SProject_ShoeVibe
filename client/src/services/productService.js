@@ -29,6 +29,7 @@ export const getProductById = async (id) => {
         throw error.response.data;
     }
 };
+
 // Hàm sửa sản phẩm theo ID
 export const updateProductById = async (id, data) => {
     try {
