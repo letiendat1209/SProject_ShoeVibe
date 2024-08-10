@@ -61,7 +61,7 @@ function DataTable({ filter }) {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
         } else {
             setSortColumn(column);
-            setSortOrder('asc');
+            setSortOrder('asc');    
         }
     };
 

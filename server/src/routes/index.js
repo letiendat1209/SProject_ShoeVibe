@@ -7,6 +7,7 @@ import routerColor from "./color";
 import routerCart from "./cart";
 import routerOrder from "./order";
 import routerUser from "./user";
+import routerWishlist from "./wishlist";
 
 const initRoutes = Router();
 
@@ -18,5 +19,6 @@ initRoutes.use("/color", routerColor);
 initRoutes.use("/cart", routerCart);
 initRoutes.use("/orders", routerOrder);
 initRoutes.use("/users", routerUser);
+initRoutes.use("/wishlist", routerWishlist);
 
 export default initRoutes;
