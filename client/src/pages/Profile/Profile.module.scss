@@ -147,6 +147,26 @@
         }
     }
 }
+.re-custom {
+    .form-input {
+        input,
+        select {
+            width: 50% !important;
+        }
+        button {
+            height: 40px;
+            padding: 0 20px;
+            min-width: 70px;
+            max-width: 220px;
+            font-size: 14px;
+            background: #ee4d2d;
+            color: #fff;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}
 .body-info-right {
     display: flex;
     justify-content: center;

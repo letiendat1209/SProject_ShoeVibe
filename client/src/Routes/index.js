@@ -12,6 +12,7 @@ import Blog from '~/pages/Blog';
 
 import Cart from '~/pages/Cart';
 import Category from '~/pages/Category';
+import Collection from '~/pages/Collection';
 import Home from '~/pages/Home';
 import Login from '~/pages/Login';
 import ProductDetail from '~/pages/ProductDetail';
@@ -25,6 +26,7 @@ const publicRoutes = [
     { path: '/cart', component: Cart },
     { path: '/product/:id', component: ProductDetail },
     { path: '/category/:categoryId', component: Category },
+    { path: '/collection/:collectionId', component: Collection },
     { path: '/blog', component: Blog, layout: null },
 ];
 // Private Routes

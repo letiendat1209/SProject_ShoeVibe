@@ -1,10 +1,10 @@
-import User from '../models/User'
-
+import Collection from "../models/Collection";
 
 export const create = async (req, res) => {
   try {
     //Validate here
-    const data = await User.create(req.body);
+
+    const data = await Collection.create(req.body);
     if (!data) {
       throw new Error("Failed to create category!");
     }
@@ -19,14 +19,14 @@ export const create = async (req, res) => {
     });
   }
 };
-export const getAllUsers = async (req, res) => {
+export const getAll = async (req, res) => {
   try {
-    const data = await User.findAll(req.body);
+    const data = await Collection.findAll(req.body);
     if (!data) {
       throw new Error("Failed !");
     }
     return res.status(200).json({
-      message: "Get all categories successfully",
+      message: "Get all collections successfully",
       data,
     });
   } catch (error) {
@@ -38,12 +38,12 @@ export const getAllUsers = async (req, res) => {
 };
 export const getDetail = async (req, res) => {
   try {
-    const data = await User.findByPk(req.params.id);
+    const data = await Collection.findByPk(req.params.id);
     if (!data) {
       throw new Error("Failed !");
     }
     return res.status(200).json({
-      message: "Get Detail User successfully",
+      message: "Category created successfully",
       data,
     });
   } catch (error) {
@@ -55,14 +55,14 @@ export const getDetail = async (req, res) => {
 };
 export const update = async (req, res) => {
   try {
-    const data = await User.findByPk(req.params.id, { new: true });
+    const data = await Collection.findByPk(req.params.id, { new: true });
     if (!data) {
-      throw new Error("User not found!");
+      throw new Error("Category not found!");
     }
-    // Cập nhật dữ liệu mới vào User
+    // Cập nhật dữ liệu mới vào category
     await data.update(req.body);
     return res.status(200).json({
-      message: "User updated successfully",
+      message: "Category updated successfully",
       data,
     });
   } catch (error) {
@@ -74,14 +74,14 @@ export const update = async (req, res) => {
 };
 export const remove = async (req, res) => {
   try {
-    const data = await User.findByPk(req.params.id);
+    const data = await Collection.findByPk(req.params.id);
     if (!data) {
       throw new Error("Category not found!");
     }
-    // Xóa category
+    // Xóa collection
     await data.destroy();
     return res.status(200).json({
-      message: "Category deleted successfully",
+      message: "Collection deleted successfully",
       data,
     });
   } catch (error) {
@@ -89,30 +89,5 @@ export const remove = async (req, res) => {
       name: error.name,
       message: error.message,
     });
-  }
-};
-export const changePassword = async (req, res) => {
-  const { userId, currentPassword, newPassword } = req.body;
-
-  try {
-    const user = await User.findByPk(userId);
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    const isMatch = await bcrypt.compare(currentPassword, user.password);
-
-    if (!isMatch) {
-      return res.status(400).json({ message: "Incorrect current password" });
-    }
-
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    user.password = hashedPassword;
-    await user.save();
-
-    res.json({ message: "Password changed successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
   }
 };

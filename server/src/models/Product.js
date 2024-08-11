@@ -20,6 +20,10 @@ const Product = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    collection_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     brand: {
       type: DataTypes.STRING(50),
       allowNull: true,
@@ -44,8 +48,11 @@ import ProductImages from "./ProductImages";
 import ProductCategory from "./ProductCategory";
 import Discount from "./discount";
 import ProductVariant from "./ProductVariant";
+import Collection from "./Collection";
+
 
 Product.belongsTo(ProductCategory, { foreignKey: "category_id" });
+Product.belongsTo(Collection, { foreignKey: "collection_id" });
 Product.belongsTo(Discount, { foreignKey: "discount_id" });
 
 Product.hasMany(ProductImages, { foreignKey: "product_id" });

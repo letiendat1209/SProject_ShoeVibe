@@ -6,6 +6,7 @@ import ProductImages from "../models/ProductImages";
 import ProductSize from "../models/ProductSize";
 import ProductVariant from "../models/ProductVariant";
 import Discount from "../models/discount";
+import Collection from "../models/Collection";
 
 export const createProduct = async (req, res) => {
   const {
@@ -273,6 +274,50 @@ export const getProductsByCategory = async (req, res) => {
   try {
     const products = await Product.findAll({
       where: { category_id: categoryId },
+      attributes: ["id", "name", "price"], // Chỉ lấy các thuộc tính cần thiết
+      include: [
+        {
+          model: ProductImages,
+          attributes: ["image_url"],
+          where: { is_main: true }, // Lấy hình ảnh chính của sản phẩm
+          required: false,
+        },
+        {
+          model: ProductVariant,
+          include: [
+            {
+              model: ProductColor,
+              attributes: ["color_name"],
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!products.length) {
+      return res
+        .status(404)
+        .json({ message: "No products found for this category" });
+    }
+
+    return res.status(200).json({
+      message: "Products retrieved successfully",
+      data: products,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      name: error.name,
+      message: error.message,
+    });
+  }
+};
+export const getProductsByCollection = async (req, res) => {
+  const { collectionId } = req.params;
+
+  try {
+    const products = await Product.findAll({
+      where: { collection_id: collectionId },
       attributes: ["id", "name", "price"], // Chỉ lấy các thuộc tính cần thiết
       include: [
         {

@@ -100,7 +100,7 @@ function DataTable({ filter }) {
                     return order.status === 'shipped';
                 } else if (filter === 'delivered') {
                     return order.status === 'delivered';
-                } else if (filter === 'cancelled') {
+                } else if (filter === 'canceled') {
                     return order.status === 'cancelled';
                 }
                 return true; // 'all' filter

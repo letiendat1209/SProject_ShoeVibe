@@ -46,8 +46,7 @@ export const deleteUser = async (UserId) => {
         throw error.response.data;
     }
 };
-
-// Lấy tất cả đơn hàng theo trạng thái thanh toán
+// Lấy tất cả khách hàng theo trạng thái thanh toán
 export const getAllUsersByPaymentStatus = async (paymentStatus) => {
     try {
         const response = await axios.get(`${API_URL}/Users/payment-status/${paymentStatus}`);
@@ -56,3 +55,17 @@ export const getAllUsersByPaymentStatus = async (paymentStatus) => {
         throw error.response.data;
     }
 };
+
+export const changePassword = async ({ userId, currentPassword, newPassword }) => {
+    try {
+        const response = await axios.put(`${API_URL}/users/change-password`, {
+            userId,
+            currentPassword,
+            newPassword,
+        });
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+};
+

@@ -31,16 +31,20 @@ function CategoryItem({ data }) {
         };
         return colorMap[colorName] || '#000000'; // Mặc định là đen nếu không tìm thấy
     };
+
+    // Loại bỏ các màu trùng lặp
+    const uniqueColors = [...new Set(data.colors)];
+
     return (
         <div className={cx('col-12 col-xs-custom-6 col-sm-4 col-lg-4 mb-32px', 'mb32')}>
             <div className={cx('product-item')}>
-                <div className={cx('product-img')}>
-                    <div className={cx('wish-list')}>
-                        <FontAwesomeIcon icon={faHeart} />
+                <Link to={`/product/${data.id}`}>
+                    <div className={cx('product-img')}>
+                        <div className={cx('wish-list')}>
+                            <FontAwesomeIcon icon={faHeart} />
+                        </div>
+                        <img src={data.imageUrl} alt="" />
                     </div>
-                    <img src={data.imageUrl} alt="" />
-                </div>
-                <Link>
                     <div className={cx('product-info')}>
                         <p className={cx('product-title')}>{data.title}</p>
                         <p className={cx('product-price')}>
@@ -50,7 +54,7 @@ function CategoryItem({ data }) {
                 </Link>
                 <div className={cx('product-variant-color')}>
                     <ul>
-                        {data.colors.map((color, index) => (
+                        {uniqueColors.map((color, index) => (
                             <li key={index}>
                                 <Link>
                                     <div
@@ -66,6 +70,7 @@ function CategoryItem({ data }) {
         </div>
     );
 }
+
 CategoryItem.propTypes = {
     data: PropTypes.shape({
         imageUrl: PropTypes.string.isRequired,

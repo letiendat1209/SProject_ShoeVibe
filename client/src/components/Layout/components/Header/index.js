@@ -7,20 +7,23 @@ import { AccountIcon, CartIcon, SearchIcon } from '~/assets/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getCategory } from '~/services/categoryService';
+import { getCollection } from '~/services/collectionService';
 
 const cx = classNames.bind(styles);
 
 function Header({ toggleCart }) {
     // Danh sách danh mục
     const [categories, setCategories] = useState([]);
+    const [collections, setCollections] = useState([]);
+
     const navigate = useNavigate();
     useEffect(() => {
-        const fetchCategories = async () => {
+        const fetchCollections = async () => {
             try {
-                const response = await getCategory();
+                const response = await getCollection();
                 // Truy cập vào thuộc tính data của đối tượng trả về
                 if (response && Array.isArray(response.data)) {
-                    setCategories(response.data);
+                    setCollections(response.data);
                 } else {
                     console.error('Data is not an array:', response);
                 }
@@ -29,7 +32,7 @@ function Header({ toggleCart }) {
             }
         };
 
-        fetchCategories();
+        fetchCollections();
     }, []);
     const handleAccountClick = () => {
         const user = localStorage.getItem('user');
@@ -50,10 +53,10 @@ function Header({ toggleCart }) {
                 </div>
                 <div className={cx('menu')}>
                     <ul className={cx('menu-list')}>
-                        {Array.isArray(categories) &&
-                            categories.map((category) => (
-                                <li key={category.id}>
-                                    <Link to={`/category/${category.id}`}>{category.name}</Link>
+                        {Array.isArray(collections) &&
+                            collections.map((collection) => (
+                                <li key={collection.id}>
+                                    <Link to={`/collection/${collection.id}`}>{collection.name}</Link>
                                 </li>
                             ))}
                     </ul>

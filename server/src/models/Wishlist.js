@@ -28,4 +28,8 @@ const Wishlist = sequelize.define(
   }
 );
 
+// Define association
+import Product from "./Product";
+Wishlist.belongsTo(Product, { foreignKey: "product_id" });
+
 export default Wishlist;

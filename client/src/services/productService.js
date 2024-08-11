@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api'; // Thay thế bằng URL thực tế của server
 
-
 export const createProduct = async (data) => {
     try {
         const response = await axios.post(`${API_URL}/product`, data);
@@ -52,6 +51,15 @@ export const deleteProductById = async (id) => {
 export const getProductsByCategory = async (categoryId) => {
     try {
         const response = await axios.get(`${API_URL}/product/category/${categoryId}`);
+        return response.data.data; // Trả về mảng sản phẩm từ thuộc tính data
+    } catch (error) {
+        throw error.response.data;
+    }
+};
+// Hàm lấy sản phẩm theo Collection
+export const getProductsByCollection = async (collectionId) => {
+    try {
+        const response = await axios.get(`${API_URL}/product/collection/${collectionId}`);
         return response.data.data; // Trả về mảng sản phẩm từ thuộc tính data
     } catch (error) {
         throw error.response.data;

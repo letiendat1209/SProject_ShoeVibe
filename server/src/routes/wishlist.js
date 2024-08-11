@@ -7,7 +7,7 @@ import {
 
 const routerWishlist = Router();
 
-routerWishlist.get("/", getWishlist);
+routerWishlist.get("/:userId", getWishlist);
 routerWishlist.post("/", addToWishlist);
 routerWishlist.delete("/:id", removeFromWishlist);
 
